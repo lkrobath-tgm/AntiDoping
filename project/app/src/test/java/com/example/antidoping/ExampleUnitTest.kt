@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.antidoping
 
 import org.junit.Test
 
