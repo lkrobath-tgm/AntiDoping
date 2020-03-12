@@ -8,7 +8,7 @@
     android:background="#FFFFFF">
 
     <View
-        android:id="@+id/view4"
+        android:id="@+id/TopBlueBg"
         android:layout_width="wrap_content"
         android:layout_height="175dp"
         android:background="#14294A"
@@ -22,11 +22,12 @@
         android:layout_width="375dp"
         android:layout_height="29dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/view4"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/TopBlueBg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view4">
+        app:layout_constraintTop_toTopOf="@+id/TopBlueBg">
 
     </SearchView>
 
@@ -42,7 +43,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_manage" />
+        app:srcCompat="@drawable/ic_more_vert" />
 
     <CheckBox
         android:id="@+id/checkBox"
