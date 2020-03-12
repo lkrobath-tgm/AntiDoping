@@ -5,15 +5,33 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.SearchView
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.suche_layout_main.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.barcode_fehler_layout)
+        setContentView(R.layout.suche_layout_main)
+
+        val clickListener = View.OnClickListener { view ->
+
+            when (view.id) {
+
+             //   searchView.setQuery("test", true)
+                //searchView.onActionViewExpanded()
+                //R.id.searchView -> searchViewClicked()
+            }
+        }
+
+        val searchView = findViewById<SearchView>(R.id.searchView)
+        searchView.setOnClickListener(clickListener)
+
     }
+
 
    /** override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
