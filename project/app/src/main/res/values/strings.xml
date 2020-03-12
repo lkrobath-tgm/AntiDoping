@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AntiDoping</string>
+    <string name="text">Sport.</string>
+    <string name="text2">Ganz pur.</string>
 </resources>
