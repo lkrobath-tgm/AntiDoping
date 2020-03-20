@@ -10,7 +10,7 @@
         android:width="1px"
         android:color="?attr/colorPrimary" />
 
-    <solid android:color="@android:color/transparent" />
+    <solid android:color="@color/colorWhite" />
 
     <corners android:radius="360dp" />
 </shape>
