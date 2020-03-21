@@ -2,4 +2,6 @@
     <string name="app_name">AntiDoping</string>
     <string name="text">Sport.</string>
     <string name="text2">Ganz pur.</string>
+    <string name="scan_barcode_or_qr_code">Scan Barcode or QR code</string>
+    <string name="result_will_be_here">Result will be here</string>
 </resources>
