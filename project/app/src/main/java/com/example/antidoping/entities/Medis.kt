@@ -6,8 +6,8 @@ import androidx.room.ForeignKey.CASCADE
 
 @Entity(tableName = "Medis")
 data class Medis(
-    @ForeignKey(entity = Takings::class, parentColumns = arrayOf("uid"), childColumns = arrayOf("uid"), onDelete = CASCADE)
-    @NonNull val uid: Int,
+    @ForeignKey(entity = Takings::class, parentColumns = arrayOf("Uid"), childColumns = arrayOf("Uid"), onDelete = CASCADE)
+    @NonNull val Uid: Int,
 
     @ColumnInfo(name = "Name") var Name: String?,
     @ColumnInfo(name = "TakingUid") var TakingUid: String?,

@@ -6,8 +6,8 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Substances", indices = arrayOf(Index(value = ["uid"], unique = true)))
+@Entity(tableName = "Substances", indices = arrayOf(Index(value = ["Uid"], unique = true)))
 data class Substances(
-    @NonNull@PrimaryKey val uid: Int,
+    @NonNull@PrimaryKey val Uid: Int,
     @ColumnInfo(name = "Name") var Name: String?
 )

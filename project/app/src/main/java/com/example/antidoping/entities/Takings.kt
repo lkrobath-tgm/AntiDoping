@@ -7,10 +7,10 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = "Takings",indices = arrayOf(Index(value = ["uid"], unique = true)))
+@Entity(tableName = "Takings",indices = arrayOf(Index(value = ["Uid"], unique = true)))
 data class Takings(
     @NonNull
-    @PrimaryKey var uid:String,
+    @PrimaryKey var Uid:String,
     @ColumnInfo(name = "Name") var Name: String?,
     @ColumnInfo(name = "Desc") var Desc: String?
 )
