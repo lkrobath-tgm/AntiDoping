@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.example.myapplication">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.antidoping">
 <uses-permission android:name="android.permission.CAMERA" />
 
 <application
@@ -19,6 +18,5 @@ package="com.example.myapplication">
     </activity>
     <activity android:name=".ScanActivity"></activity>
 </application>
-
 
 </manifest>
