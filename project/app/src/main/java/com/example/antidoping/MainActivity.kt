@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.antidoping
 
 import android.Manifest
 import android.app.AlertDialog
@@ -10,7 +10,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -87,7 +86,9 @@ class MainActivity : AppCompatActivity() {
             listPermissionsNeeded.add(Manifest.permission.RECORD_AUDIO)
         }
         if (!listPermissionsNeeded.isEmpty()) {
-            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toTypedArray(), REQUEST_ID_MULTIPLE_PERMISSIONS)
+            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toTypedArray(),
+                REQUEST_ID_MULTIPLE_PERMISSIONS
+            )
             return false
         }
         return true
