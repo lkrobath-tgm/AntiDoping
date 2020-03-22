@@ -8,8 +8,8 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="410dp"
-        android:layout_height="160dp"
+        android:layout_width="411dp"
+        android:layout_height="180dp"
         android:background="#11284c"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,14 +46,14 @@
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="66dp"
-        android:layout_height="74dp"
+        android:layout_height="91dp"
         android:textAlignment="viewStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12"
+        app:layout_constraintVertical_bias="0.134"
         app:srcCompat="@drawable/ic_medicine_header" />
 
     <TextView
