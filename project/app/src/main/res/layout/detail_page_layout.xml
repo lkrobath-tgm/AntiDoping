@@ -27,21 +27,21 @@
         app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.039"
+        app:layout_constraintVertical_bias="0.022"
         app:srcCompat="@drawable/ic_chevron_left" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="0.01dp"
-        android:background="#FFFFFF"
-        android:backgroundTint="#FFFFFF"
+        android:background="#203e66"
+        android:backgroundTint="#203e66"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view"
-        app:layout_constraintVertical_bias="0.097" />
+        app:layout_constraintVertical_bias="0.094" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -58,10 +58,12 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="257dp"
-        android:layout_height="67dp"
-        android:text="TextView"
+        android:layout_width="227dp"
+        android:layout_height="72dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Medikamentenname"
         android:textColor="#FFFFFF"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
