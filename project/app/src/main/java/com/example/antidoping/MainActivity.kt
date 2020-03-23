@@ -32,5 +32,7 @@ class MainActivity : AppCompatActivity() {
         val uid = profileDAO.getSpecUid("a")
         val i = 0
         takings.forEach(System.out::print)
+
+        //Code auf anderem Thread laufen lassen. -> IOThread!!! Reactive programming, Kotlin corotine
     }
 }
