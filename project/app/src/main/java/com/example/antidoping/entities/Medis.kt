@@ -4,13 +4,15 @@ import androidx.annotation.NonNull
 import androidx.room.*
 import androidx.room.ForeignKey.CASCADE
 
-@Entity(tableName = "Medis")
+@Entity(tableName = "Medis",primaryKeys = arrayOf("Uid","TakingUid") , foreignKeys = [ ForeignKey(entity = Takings::class, parentColumns = arrayOf("Uid"), childColumns = arrayOf("TakingUid"))] )
 data class Medis(
-    @ForeignKey(entity = Takings::class, parentColumns = arrayOf("Uid"), childColumns = arrayOf("Uid"), onDelete = CASCADE)
+    //@ForeignKey(entity = Takings::class, parentColumns = arrayOf("Uid"), childColumns = arrayOf("Uid"), onDelete = CASCADE)
+
     @NonNull val Uid: Int,
 
     @ColumnInfo(name = "Name") var Name: String?,
-    @ColumnInfo(name = "TakingUid") var TakingUid: String?,
+
+    @NonNull@ColumnInfo(name = "TakingUid") var TakingUid: String,
     @ColumnInfo(name = "AG") var AG: String?,
     @ColumnInfo(name = "EW") var EW: String?,
     @ColumnInfo(name = "NW") var NW: String?,
