@@ -28,6 +28,13 @@ class MainActivity : AppCompatActivity() {
         tvresult = findViewById(R.id.tvresult)
 
 
+        var menu:ImageView = findViewById(R.id.imageView2);
+
+        menu.setOnClickListener{
+            val intent = Intent(this@MainActivity, MenuActivity::class.java)
+            startActivity(intent)
+        }
+
         var barcodeBtn:ImageView = findViewById(R.id.barcodebtn);
 
         barcodeBtn.setOnClickListener{

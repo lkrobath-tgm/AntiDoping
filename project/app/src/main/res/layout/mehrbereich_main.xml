@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_gray"
+    tools:context=".MainActivity">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginBottom="672dp"
+        android:background="@color/colorSecondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:srcCompat="@drawable/ic_chevron_left" />
+
+    <TextView
+        android:id="@+id/mehrbereichTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mehrbereich_text"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <Button
+        android:id="@+id/verbotslisteButton"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="409dp"
+        android:layout_height="55dp"
+        android:background="#FFFFFF"
+        android:drawableEnd="@drawable/ic_chevron_right"
+        android:text="@string/verbotsliste_Button"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <Button
+        android:id="@+id/benutzerhinweisButton"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="409dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="8dp"
+        android:background="#FFFFFF"
+        android:drawableEnd="@drawable/ic_chevron_right"
+        android:text="@string/benutzerhinweise_Button"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verbotslisteButton" />
+
+    <Button
+        android:id="@+id/Open Source Lizenz"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="409dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="8dp"
+        android:background="#FFFFFF"
+        android:drawableEnd="@drawable/ic_chevron_right"
+        android:text="@string/osl_Button"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/benutzerhinweisButton" />
+
+    <Button
+        android:id="@+id/open Source Lizenz"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="409dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="8dp"
+        android:background="#FFFFFF"
+        android:drawableEnd="@drawable/ic_chevron_right"
+        android:text="@string/impressum_Button"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Open Source Lizenz" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

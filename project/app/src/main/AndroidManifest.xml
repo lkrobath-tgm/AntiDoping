@@ -18,6 +18,7 @@
         </intent-filter>
     </activity>
     <activity android:name=".ScanActivity"></activity>
+        <activity android:name=".MenuActivity"></activity>
 </application>
 
 </manifest>
