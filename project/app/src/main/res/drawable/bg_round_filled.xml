@@ -6,7 +6,7 @@
     android:viewportWidth="24"
     android:viewportHeight="24">
 
-    <solid android:color="?attr/colorPrimary" />
+    <solid android:color="#FFFFFF" />
 
     <corners android:radius="360dp" />
 </shape>

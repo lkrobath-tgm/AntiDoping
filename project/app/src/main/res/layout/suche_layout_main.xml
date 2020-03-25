@@ -23,7 +23,7 @@
         android:id="@+id/searchView"
         android:layout_width="375dp"
         android:layout_height="29dp"
-        android:background="#FFFFFF"
+        android:background="@drawable/bg_round_filled"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="@+id/TopBlueBg"
         app:layout_constraintEnd_toEndOf="parent"
