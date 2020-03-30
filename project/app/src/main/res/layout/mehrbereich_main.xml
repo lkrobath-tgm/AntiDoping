@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/backToMainView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -44,11 +44,10 @@
 
     <Button
         android:id="@+id/verbotslisteButton"
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="409dp"
         android:layout_height="55dp"
-        android:background="#FFFFFF"
         android:drawableEnd="@drawable/ic_chevron_right"
+        android:insetBottom="0dp"
         android:text="@string/verbotsliste_Button"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
@@ -56,6 +55,7 @@
         android:textColorHighlight="#FFFFFF"
         android:textColorLink="#FFFFFF"
         android:textSize="24sp"
+        app:iconPadding="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
@@ -64,10 +64,11 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="409dp"
         android:layout_height="55dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="1dp"
         android:background="#FFFFFF"
         android:drawableEnd="@drawable/ic_chevron_right"
-        android:text="@string/benutzerhinweise_Button"
+        android:insetBottom="0dp"
+        android:text="@string/benutzerhinweiseButton"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textColor="@android:color/black"
@@ -78,14 +79,15 @@
         app:layout_constraintTop_toBottomOf="@+id/verbotslisteButton" />
 
     <Button
-        android:id="@+id/Open Source Lizenz"
+        android:id="@+id/oslButton"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="409dp"
         android:layout_height="55dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="1dp"
         android:background="#FFFFFF"
         android:drawableEnd="@drawable/ic_chevron_right"
-        android:text="@string/osl_Button"
+        android:insetBottom="0dp"
+        android:text="@string/oslButton"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textColor="@android:color/black"
@@ -96,14 +98,15 @@
         app:layout_constraintTop_toBottomOf="@+id/benutzerhinweisButton" />
 
     <Button
-        android:id="@+id/open Source Lizenz"
+        android:id="@+id/impressumButton"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="409dp"
         android:layout_height="55dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="1dp"
         android:background="#FFFFFF"
         android:drawableEnd="@drawable/ic_chevron_right"
-        android:text="@string/impressum_Button"
+        android:insetBottom="0dp"
+        android:text="@string/impressumButton"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textColor="@android:color/black"
@@ -111,7 +114,7 @@
         android:textColorLink="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Open Source Lizenz" />
+        app:layout_constraintTop_toBottomOf="@+id/oslButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
