@@ -1,13 +1,21 @@
 package com.example.antidoping
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.huma.room_for_asset.RoomAsset
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.*
+import android.widget.Toast
+import android.view.KeyEvent.KEYCODE_ENTER
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,10 +43,32 @@ class MainActivity : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ result ->
                 Log.i("substanceByName", "Ethanol result count: ${result.size}")
-                searchResult.text = result.first().name
+                searchResult.text = result.first().Name
             }, { exception ->
                 Log.e("aspirin", "$exception")
             })
+
+        searchText.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
+                // If the event is a key-down event on the "enter" button
+                if (event.getAction() === KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    // Perform action on key press
+                    profileDAO.getSubstancesAndMedisByName(searchText.text.toString().toUpperCase())
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({result -> searchResult.text = result.first().getMedisName()
+                        },{exception ->
+                            Log.e("Exception","$exception")
+                        })
+                    Toast.makeText(applicationContext, "TEST", Toast.LENGTH_SHORT).show();
+                    return true
+                }
+                return false
+            }
+        })
+
+
+
 
 
     }

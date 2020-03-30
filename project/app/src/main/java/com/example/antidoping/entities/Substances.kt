@@ -10,5 +10,5 @@ import androidx.room.PrimaryKey
 data class Substances(
     @NonNull
     @PrimaryKey val Uid: Int,
-    @ColumnInfo(name = "Name") var name: String?
+    @ColumnInfo(name = "Name") var Name: String?
 )

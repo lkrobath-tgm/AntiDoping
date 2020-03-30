@@ -27,6 +27,7 @@ interface NadaDAO {
     )
     fun getSubstancesByName(name: String): Observable<List<Substances>>
 
-    /*@Query("SELECT * FROM Substances LEFT OUTER JOIN Medis WHERE Name LIKE '%'||:name||'%' ")
-    fun getEverthingByName(name:String): Observable<List<>>*/
+    @Query("SELECT * FROM Substances LEFT OUTER JOIN Medis WHERE Substances.Name LIKE '%'||:name||'%' OR Medis.Name LIKE '%'||:name||'%'")
+    fun getSubstancesAndMedisByName(name:String): Observable<List<JoinMedisSubstanceData>>
+    //Data class mit Room annotations
 }
