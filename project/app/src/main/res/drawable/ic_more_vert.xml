@@ -6,10 +6,15 @@
     android:viewportWidth="24"
     android:viewportHeight="24">
 
+<<<<<<< HEAD
+    <path
+        android:fillColor="#FFFFFF"
+=======
 
 
     <path
         android:fillColor="?attr/colorPrimary"
+>>>>>>> master
         android:fillType="evenOdd"
         android:pathData="M12.5,17a2.5,2.5 0,1 1,0 5,2.5 2.5,0 0,1 0,-5zM12.5,9a2.5,2.5 0,1 1,0 5,2.5 2.5,0 0,1 0,-5zM12.5,2a2.5,2.5 0,1 1,0 5,2.5 2.5,0 0,1 0,-5z"
         tools:ignore="VectorRaster" />

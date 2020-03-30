@@ -6,7 +6,6 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -16,6 +15,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+
 
 class MainActivity : AppCompatActivity() {
     private var btn: Button? = null
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         tvresult = findViewById(R.id.tvresult)
 
 
-        var menu:ImageView = findViewById(R.id.imageView2);
+        var menu: ImageView = findViewById(R.id.imageView2);
 
         menu.setOnClickListener{
             val intent = Intent(this@MainActivity, MenuActivity::class.java)
