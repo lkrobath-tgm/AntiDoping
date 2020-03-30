@@ -1,12 +1,22 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="action_settings">Settings</string>
-    <string name="qr_code_scannen">QR-Code scannen</string>
-    <string name="du_findest_den_qr_code_auf_der_verpackung_des_medikaments">Du findest den QR-Code auf der Verpackung des Medikaments.</string>
-    <string name="BenHinText">Zu Benutzerhinweisen</string>
-    <string name="MedScanText">Medikament Scannen</string>
-    <string name="SubstText">Substanzen</string>
-    <string name="MedText">Medikamente</string>
-    <string name="NiGefText">Uups.. nichts gefunden!</string>
-    <string name="NiGefLangText">Mit dem eingegebenen Suchbegriff existiert weder ein Medikament noch eine Substanz im Austria Codex. Bitte überprüfe deine Eingabe. Weitere Informationen findest du unter Benutzerhinweisen</string>
+<string name="action_settings">Settings</string>
+<string name="qr_code_scannen">QR-Code scannen</string>
+<string name="du_findest_den_qr_code_auf_der_verpackung_des_medikaments">Du findest den QR-Code auf der Verpackung des Medikaments.</string>
+<string name="BenHinText">Zu Benutzerhinweisen</string>
+<string name="MedScanText">Medikament Scannen</string>
+<string name="SubstText">Substanzen</string>
+<string name="MedText">Medikamente</string>
+<string name="NiGefText">Uups.. nichts gefunden!</string>
+<string name="NiGefLangText">Mit dem eingegebenen Suchbegriff existiert weder ein Medikament noch eine Substanz im Austria Codex. Bitte überprüfe deine Eingabe. Weitere Informationen findest du unter Benutzerhinweisen</string>
+
+<string name="app_name">AntiDoping</string>
+<string name="text">Sport.</string>
+<string name="text2">Ganz pur.</string>
+<string name="scan_barcode_or_qr_code">Scan Barcode or QR code</string>
+<string name="result_will_be_here">Result (of Barcode) will be here</string>
+<string name="mehrbereich_text">Mehrbereich</string>
+<string name="verbotsliste_Button">Verbotsliste</string>
+<string name="benutzerhinweise_Button">Benutzerhinweise</string>
+<string name="osl_Button">Open Source Lizenz</string>
+<string name="impressum_Button">Impressum</string>
 </resources>
