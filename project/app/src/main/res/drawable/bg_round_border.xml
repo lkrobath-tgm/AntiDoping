@@ -10,11 +10,11 @@
         android:width="1px"
         android:color="?attr/colorPrimary" />
 
-<<<<<<< HEAD
+
     <solid android:color="@android:color/transparent" />
-=======
+
     <solid android:color="@color/colorWhite" />
->>>>>>> master
+
 
     <corners android:radius="360dp" />
 </shape>

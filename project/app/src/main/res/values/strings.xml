@@ -20,5 +20,8 @@
 <string name="benutzerhinweise_Button">Benutzerhinweise</string>
 <string name="osl_Button">Open Source Lizenz</string>
 <string name="impressum_Button">Impressum</string>
+<string name="benutzerhinweiseButton">Benutzerhinweis</string>
+<string name="oslButton">Open Source Lizenz</string>
+<string name="impressumButton">Impressum</string>
 
 </resources>

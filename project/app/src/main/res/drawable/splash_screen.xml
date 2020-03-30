@@ -2,11 +2,9 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item>
-<<<<<<< HEAD
-        <color android:color="?attr/colorSecondary" />
-=======
+
         <color android:color="@color/colorSecondary" />
->>>>>>> master
+
     </item>
 
     <!-- @drawable/ic_logo has a ration of 5:1 -->
