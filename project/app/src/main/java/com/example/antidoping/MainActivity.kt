@@ -9,9 +9,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.KeyEvent
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -49,6 +49,13 @@ class MainActivity : AppCompatActivity() {
             tvresult!!.text = j
         }
 
+        val searchView:SearchView = findViewById(R.id.searchView)
+
+        searchView.setOnClickListener{
+            val intent = Intent(this@MainActivity, SearchActivity::class.java)
+            startActivity(intent)
+        }
+        
 
 
         if (checkAndRequestPermissions()) {
