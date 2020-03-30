@@ -1,59 +1,45 @@
 package com.example.antidoping
 
-import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.antidoping.entities.Substances
+import com.huma.room_for_asset.RoomAsset
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var database: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main);
 
-        class InitDatabase : AsyncTask<Unit, Unit, String>() {
-            var database:AppDatabase = Room.databaseBuilder(
-            applicationContext,
+        database = RoomAsset.databaseBuilder(
+            this,
             AppDatabase::class.java,
             "nada-small.db"
-            )
-            .createFromAsset("databases/nada-small.db").fallbackToDestructiveMigration()
-            .build()
-            override fun doInBackground(vararg params: Unit): String {
+        ).build()
+        val profileDAO = database.getNadaDAO()
 
-                Log.i("test","test")
-                return "Complete"
-            }
-            override fun onPostExecute(result: String) {
+        val searchText: EditText = findViewById(R.id.searchingtext)
 
-            }
-        }
-
-        //Datenbank initialisieren
-        val initDatabase = InitDatabase()
-        initDatabase.execute()
+        val searchResult: TextView = findViewById(R.id.searchResult)
 
 
-        val profileDAO = initDatabase.database.getNadaDAO()
+        // look at DAO class -> Return Type is now Observable (Reactive)
+        profileDAO.getSubstancesByName("Ethanol")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ result ->
+                Log.i("substanceByName", "Ethanol result count: ${result.size}")
+                searchResult.text = result.first().name
+            }, { exception ->
+                Log.e("aspirin", "$exception")
+            })
 
-        val searchText:EditText = findViewById(R.id.searchingtext)
 
-        val searchResult:TextView = findViewById(R.id.searchResult)
-
-
-        val takings = profileDAO.getAllTakings()
-        val uid = profileDAO.getSpecUid("a")
-        takings.forEach(System.out::print)
-
-        val search:Substances = profileDAO.getSubstancesByName(searchText.text.toString())
-
-        searchResult.setText(search.Name)
     }
 }

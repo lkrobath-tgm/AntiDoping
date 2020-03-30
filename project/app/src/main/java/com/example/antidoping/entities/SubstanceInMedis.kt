@@ -1,19 +1,39 @@
 package com.example.antidoping.entities
 
 import androidx.annotation.NonNull
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
 
-@Entity(tableName = "SubstanceInMedis",primaryKeys = arrayOf("SubstanceUid","MediUid"))
+@Entity(tableName = "SubstanceInMedis",
+    foreignKeys = [
+        ForeignKey(
+            entity = Medis::class,
+            parentColumns = ["Uid"],
+            childColumns = ["MediUid"],
+            onDelete = CASCADE
+        ),
+        ForeignKey(
+            entity = Substances::class,
+            parentColumns = ["Uid"],
+            childColumns = ["SubstanceUid"],
+            onDelete = CASCADE
+        )
+    ],
+    primaryKeys = ["MediUid", "SubstanceUid"])
 data class SubstanceInMedis(
-    @ForeignKey(entity = Medis::class,parentColumns = arrayOf("Uid"), childColumns = arrayOf("MediUid"), onDelete = CASCADE)
-    @NonNull val MediUid:Int,
-    @ForeignKey(entity = Substances::class, parentColumns = arrayOf("Uid"), childColumns = arrayOf("SubstanceUid"), onDelete = CASCADE)
-    @NonNull val SubstanceUid:Int,
-    @ColumnInfo(name = "Name") var Name: String?,
+
+    @NonNull
+    @ColumnInfo(name = "MediUid")
+    val MediUid: Int,
+
+    @ColumnInfo(name = "SubstanceUid")
+    @NonNull val SubstanceUid: Int,
+
     @ColumnInfo(name = "Domain") var Domain: String?,
     @ColumnInfo(name = "Effect") var Effect: String?,
-    @ColumnInfo(name = "InCompetition") var InCompetition: String?,
-    @ColumnInfo(name = "OutCompetition") var OutCompetition: String?,
-    @ColumnInfo(name = "Warning") var Warning: String?
+    @ColumnInfo(name = "InCompetition") var InCompetition: Int?,
+    @ColumnInfo(name = "OutCompetition") var OutCompetition: Int?,
+    @ColumnInfo(name = "Warning") var Warning: Int?
 )

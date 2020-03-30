@@ -4,11 +4,33 @@ import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.ForeignKey.CASCADE
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Packungen",primaryKeys = arrayOf("MediUid", "PZN"),foreignKeys = [ForeignKey(entity = Medis::class,parentColumns = arrayOf("Uid"), childColumns = arrayOf("MediUid"), onDelete = ForeignKey.CASCADE)])
+@Entity(tableName = "Packungen",
+    primaryKeys = arrayOf("MediUid", "PZN"),
+    foreignKeys = [
+        ForeignKey(
+            entity = Medis::class,
+            parentColumns = ["Uid"],
+            childColumns = ["MediUid"],
+            onDelete = CASCADE
+        )
+    ]
+)
 data class Packungen(
-    @NonNull val MediUid:Int,
-    @NonNull val PZN:Int,
-    @ColumnInfo(name = "Frei") var Frei: Int
+    @ColumnInfo(name = "PZN")
+    val pzn: Int,
+    @NonNull @ColumnInfo(name = "MediUid")
+    val medicineId: Int,
+    @ColumnInfo(name = "Frei")
+    val free: Int?
+
+    /**
+     * The "Pharmazentralnummer" (Pharmacy Central Number).
+     * This integer is the code that gets scanned from a barcode.
+     *
+     * See [https://confluence.allaboutapps.at/pages/viewpage.action?pageId=71795254].
+     */
+
 )

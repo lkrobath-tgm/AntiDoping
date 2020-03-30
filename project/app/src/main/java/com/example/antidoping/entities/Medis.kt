@@ -2,7 +2,11 @@ package com.example.antidoping.entities
 
 import android.os.Parcelable
 import androidx.annotation.NonNull
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.ForeignKey.CASCADE
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -10,12 +14,16 @@ import kotlinx.android.parcel.Parcelize
     tableName = "Medis",
     primaryKeys = ["Uid"],
     foreignKeys = [
-        ForeignKey(entity = Takings::class, parentColumns = arrayOf("Uid"), childColumns = arrayOf("TakingUid"))],
-    indices = [Index("TakingUid")])
+        ForeignKey(
+            entity = Takings::class,
+            parentColumns = arrayOf("Uid"),
+            childColumns = arrayOf("TakingUid")
+        )]
+)
 data class Medis(
     @ColumnInfo(name = "Uid")
-    @NonNull val Uid: Int,
-
+    val Uid: Int,
+    @NonNull
     @ColumnInfo(name = "Name") var Name: String?,
 
     @ColumnInfo(name = "TakingUid")
@@ -26,4 +34,4 @@ data class Medis(
     @ColumnInfo(name = "InCompetition") var InCompetition: Int?,
     @ColumnInfo(name = "OutCompetition") var OutCompetition: Int?,
     @ColumnInfo(name = "Warning") var Warning: Int?
-):Parcelable
+) : Parcelable

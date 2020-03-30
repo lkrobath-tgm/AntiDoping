@@ -7,7 +7,7 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = "Takings",indices = arrayOf(Index(value = ["Uid"], unique = true)))
+@Entity(tableName = "Takings")
 data class Takings(
     @NonNull
     @PrimaryKey var Uid:String,
