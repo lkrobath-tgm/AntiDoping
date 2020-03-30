@@ -20,15 +20,5 @@
 <string name="benutzerhinweise_Button">Benutzerhinweise</string>
 <string name="osl_Button">Open Source Lizenz</string>
 <string name="impressum_Button">Impressum</string>
-<string name="app_name">AntiDoping</string>
-<string name="text">Sport.</string>
-<string name="text2">Ganz pur.</string>
-<string name="scan_barcode_or_qr_code">Scan Barcode or QR code</string>
-<string name="result_will_be_here">Result (of Barcode) will be here</string>
-<string name="mehrbereich_text">Mehrbereich</string>
-<string name="verbotsliste_Button">Verbotsliste</string>
-<string name="benutzerhinweiseButton">Benutzerhinweise</string>
-<string name="oslButton">Open Source Lizenz</string>
-<string name="impressumButton">Impressum</string>
 
 </resources>

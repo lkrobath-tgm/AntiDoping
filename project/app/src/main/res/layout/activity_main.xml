@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        style="@style/MyApp"
+        style="@style/AppTheme"
         android:layout_marginEnd="8dp"
         android:src="@drawable/ic_more_vert"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
