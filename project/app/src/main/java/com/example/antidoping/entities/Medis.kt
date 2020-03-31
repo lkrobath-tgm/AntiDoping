@@ -18,7 +18,8 @@ import kotlinx.android.parcel.Parcelize
         ForeignKey(
             entity = Takings::class,
             parentColumns = arrayOf("Uid"),
-            childColumns = arrayOf("TakingUid")
+            childColumns = arrayOf("TakingUid"),
+            onDelete = CASCADE
         )]
 )
 data class Medis(

@@ -36,27 +36,40 @@ class MainActivity : AppCompatActivity() {
 
         val searchResult: TextView = findViewById(R.id.searchResult)
 
+        val searchResult2:TextView = findViewById(R.id.textView)
+        val searchResult3:TextView = findViewById(R.id.textView2)
+
 
         // look at DAO class -> Return Type is now Observable (Reactive)
-        profileDAO.getSubstancesByName("Ethanol")
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ result ->
-                Log.i("substanceByName", "Ethanol result count: ${result.size}")
-                searchResult.text = result.first().Name
-            }, { exception ->
-                Log.e("aspirin", "$exception")
-            })
+
 
         searchText.setOnKeyListener(object : View.OnKeyListener {
             override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
                 // If the event is a key-down event on the "enter" button
                 if (event.getAction() === KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                     // Perform action on key press
-                    profileDAO.getSubstancesAndMedisByName(searchText.text.toString().toUpperCase())
+                    /*profileDAO.getSubstancesAndMedisByName(searchText.text.toString())
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({result -> searchResult.text = result.first().getMedisName()
+                        .subscribe({ result ->
+                            Log.i("substanceByName", "Ethanol result count: ${result.size}")
+                            searchResult.text = result.first().getName()
+                            searchResult2.text = result.get(1).getName()
+                            searchResult3.text = result.get(2).getName()
+                        }, { exception ->
+                            Log.e("aspirin", "$exception")
+                        })*/
+
+
+
+
+                    profileDAO.getMedisAndSubstances(searchText.text.toString())
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({result ->
+                            searchResult.text = result.first().getName()
+                            searchResult2.text = result.get(1).getName()
+                            searchResult3.text = result.get(2).getName()
                         },{exception ->
                             Log.e("Exception","$exception")
                         })
@@ -66,10 +79,5 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         })
-
-
-
-
-
     }
 }

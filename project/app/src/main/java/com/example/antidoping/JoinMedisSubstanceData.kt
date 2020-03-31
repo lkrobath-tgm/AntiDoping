@@ -1,13 +1,44 @@
 package com.example.antidoping
 
-import androidx.room.DatabaseView
-import androidx.room.Embedded
-import androidx.room.Relation
+import androidx.room.*
 import com.example.antidoping.entities.Medis
 import com.example.antidoping.entities.Substances
 
+/*@Entity(
+    tableName = "JoinMedisSubstanceData",
+    indices = [
+        Index(value = ["Medis", "Substances"])
+    ],
+    foreignKeys = [
+        ForeignKey(entity = Medis::class, parentColumns = ["Name"], childColumns = ["substanceName"]),
+        ForeignKey(entity = Substances::class, parentColumns = ["Name"], childColumns = ["medisName"])
+    ]
+)*/
 class JoinMedisSubstanceData {
-    @Embedded var medis:Medis? = null
+    /*@PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "_ID")
+    var id: Long = 0
+
+    @ColumnInfo(name = "substanceName")
+    var substanceName:String? = null
+
+    @ColumnInfo(name = "medisName")
+    var medisName:String? = null
+
+    fun getName():String{
+        return medisName+substanceName
+    }*/
+
+
+
+
+
+
+
+
+    @Embedded
+    var medis:Medis? = null
+
     @Relation(
         parentColumn = "Name",
         entityColumn = "Name"
@@ -23,11 +54,4 @@ class JoinMedisSubstanceData {
         return medis?.Name+substance?.Name
     }
 
-   /* fun getMedisName(): String? {
-        return medisName
-    }
-
-    fun setMedisName(medisName: String) {
-        this.medisName = medisName
-    }*/
 }
