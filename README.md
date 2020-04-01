@@ -1,4 +1,2 @@
 # AntiDoping
-Semesterprojekt Anti-Doping APp
-
-# Patrik Kremenek
+Semesterprojekt Anti-Doping App
