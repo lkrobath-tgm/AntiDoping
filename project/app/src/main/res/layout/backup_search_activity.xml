@@ -48,7 +48,7 @@
         app:srcCompat="@drawable/ic_more_vert" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/medicine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/substance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:buttonTint="@color/cardview_light_background"
@@ -71,8 +71,8 @@
         android:textColorLink="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.234"
-        app:layout_constraintStart_toEndOf="@+id/checkBox"
-        app:layout_constraintTop_toTopOf="@+id/checkBox" />
+        app:layout_constraintStart_toEndOf="@+id/medicine"
+        app:layout_constraintTop_toTopOf="@+id/medicine" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -145,6 +145,6 @@
         app:layout_constraintBottom_toTopOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        app:layout_constraintTop_toBottomOf="@+id/substance" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

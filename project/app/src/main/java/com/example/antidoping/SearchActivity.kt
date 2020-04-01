@@ -14,12 +14,15 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 import android.view.KeyEvent.KEYCODE_ENTER
 import android.widget.*
+import org.w3c.dom.Text
 
 
 class SearchActivity : AppCompatActivity() {
     private var btn: Button? = null
     private val TAG = "tag"
     lateinit var database: AppDatabase
+    var isSubstance:Boolean = false
+    var isMedicine:Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,21 +40,74 @@ class SearchActivity : AppCompatActivity() {
 
         val searchText: SearchView = findViewById(R.id.searchView)
 
-        val searchResult: TextView = findViewById(R.id.textView3)
+        val howManySearchResults:TextView = findViewById(R.id.howManySearch)
+
+        val searchResult:TextView = findViewById(R.id.textView3)
+
+        val onlySubstance:CheckBox = findViewById(R.id.substance)
+
+        val onlyMedicine:CheckBox = findViewById(R.id.medicine)
 
 
+        onlySubstance.setOnClickListener {
+            if(onlySubstance.isChecked){
+                isSubstance = true
+                Toast.makeText(applicationContext, "Substanz", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        onlyMedicine.setOnClickListener {
+            if(onlyMedicine.isChecked){
+                isMedicine = true
+                Toast.makeText(applicationContext, "Medizin", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        //Search Query
         searchText.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if(query != null){
-                    var notNullQuery:String = query
-                    profileDAO.getMedisAndSubstances(query)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({result ->
-                            searchResult.text = result.first().getName()
-                        },{exception ->
-                            Log.e("Exception","$exception")
-                        })
+                    if(query.equals("") || query.equals(" ")){
+                        howManySearchResults.text = "0 Suchergebnisse"
+                    }else {
+                        var notNullQuery: String = query
+                        if(isMedicine){
+                            profileDAO.getMedisByName(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    searchResult.text = result.first().Name
+                                    howManySearchResults.text =
+                                        result.size.toString() + "Suchergebnisse"
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })
+                        }
+                        if(isSubstance){
+                            profileDAO.getSubstancesByName(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    searchResult.text = result.first().Name
+                                    howManySearchResults.text =
+                                        result.size.toString() + "Suchergebnisse"
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })
+                        }
+                        if(isSubstance == false && isMedicine == false) {
+                            profileDAO.getMedisAndSubstances(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    searchResult.text = result.first().getName()
+                                    howManySearchResults.text =
+                                        result.size.toString() + "Suchergebnisse"
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })
+                        }
+                    }
                 }else{
                     Toast.makeText(applicationContext, "There is no word that we can search for! ", Toast.LENGTH_SHORT).show();
                 }
@@ -59,15 +115,46 @@ class SearchActivity : AppCompatActivity() {
                 return false
             }
             override fun onQueryTextChange(newText: String): Boolean {
-                profileDAO.getMedisAndSubstances(newText)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({result ->
-                        searchResult.text = result.first().getName()
-
-                    },{exception ->
-                        Log.e("Exception","$exception")
-                    })
+                if(newText.equals("") || newText.equals(" ")){
+                    howManySearchResults.text = "0 Suchergebnisse"
+                }else{
+                    if(isMedicine){
+                        profileDAO.getMedisByName(newText)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({ result ->
+                                searchResult.text = result.first().Name
+                                howManySearchResults.text =
+                                    result.size.toString() + "Suchergebnisse"
+                            }, { exception ->
+                                Log.e("Exception", "$exception")
+                            })
+                    }
+                    if(isSubstance){
+                        profileDAO.getSubstancesByName(newText)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({ result ->
+                                searchResult.text = result.first().Name
+                                howManySearchResults.text =
+                                    result.size.toString() + "Suchergebnisse"
+                            }, { exception ->
+                                Log.e("Exception", "$exception")
+                            })
+                    }
+                    if(isSubstance == false && isMedicine == false) {
+                        profileDAO.getMedisAndSubstances(newText)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({ result ->
+                                searchResult.text = result.first().getName()
+                                howManySearchResults.text =
+                                    result.size.toString() + "Suchergebnisse"
+                            }, { exception ->
+                                Log.e("Exception", "$exception")
+                            })
+                    }
+                }
                 return true
             }
         })
