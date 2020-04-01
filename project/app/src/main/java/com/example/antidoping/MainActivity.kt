@@ -17,9 +17,12 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
 
+
 class MainActivity : AppCompatActivity() {
     private var btn: Button? = null
     private val TAG = "tag"
+
+    lateinit var database: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

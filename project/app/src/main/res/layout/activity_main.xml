@@ -10,6 +10,7 @@
     android:background="@drawable/bg_home">
 
 
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="180dp"
@@ -115,4 +116,5 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
 
