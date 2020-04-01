@@ -5,43 +5,73 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.SearchView
+import android.content.DialogInterface
+import android.util.Log
+import android.view.KeyEvent
+import com.huma.room_for_asset.RoomAsset
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import java.util.*
+import android.view.KeyEvent.KEYCODE_ENTER
+import android.widget.*
 
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.suche_layout_main.*
 
 class SearchActivity : AppCompatActivity() {
+    private var btn: Button? = null
+    private val TAG = "tag"
+    lateinit var database: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.suche_layout_main)
 
-        val clickListener = View.OnClickListener { view ->
 
-            when (view.id) {
 
-             //   searchView.setQuery("test", true)
-                //searchView.onActionViewExpanded()
-                //R.id.searchView -> searchViewClicked()
+
+        database = RoomAsset.databaseBuilder(
+            this,
+            AppDatabase::class.java,
+            "nada-small.db"
+        ).build()
+        val profileDAO = database.getNadaDAO()
+
+        val searchText: SearchView = findViewById(R.id.searchView)
+
+        val searchResult: TextView = findViewById(R.id.textView3)
+
+
+        searchText.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if(query != null){
+                    var notNullQuery:String = query
+                    profileDAO.getMedisAndSubstances(query)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({result ->
+                            searchResult.text = result.first().getName()
+                        },{exception ->
+                            Log.e("Exception","$exception")
+                        })
+                }else{
+                    Toast.makeText(applicationContext, "There is no word that we can search for! ", Toast.LENGTH_SHORT).show();
+                }
+
+                return false
             }
-        }
+            override fun onQueryTextChange(newText: String): Boolean {
+                profileDAO.getMedisAndSubstances(newText)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({result ->
+                        searchResult.text = result.first().getName()
 
-        val searchView = findViewById<SearchView>(R.id.searchView)
-        searchView.setOnClickListener(clickListener)
-
+                    },{exception ->
+                        Log.e("Exception","$exception")
+                    })
+                return true
+            }
+        })
     }
-
-
-   /** override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
-    }*/
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
