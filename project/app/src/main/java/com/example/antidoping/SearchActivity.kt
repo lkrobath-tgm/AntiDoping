@@ -14,6 +14,11 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 import android.view.KeyEvent.KEYCODE_ENTER
 import android.widget.*
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.antidoping.entities.JoinMedisSubstanceData
+import com.example.antidoping.epoxy.SingleItemController
 import org.w3c.dom.Text
 
 
@@ -23,6 +28,10 @@ class SearchActivity : AppCompatActivity() {
     lateinit var database: AppDatabase
     var isSubstance:Boolean = false
     var isMedicine:Boolean = false
+
+
+    private val controller:SingleItemController by lazy {SingleItemController()}
+    private val recyclerView : RecyclerView by lazy { findViewById<RecyclerView>(R.id.recyclerView) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,7 +85,8 @@ class SearchActivity : AppCompatActivity() {
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe({ result ->
-                                    searchResult.text = result.first().Name
+                                    controller.initJoinList(result)
+                                    searchResult.text = result.first().getName()
                                     howManySearchResults.text =
                                         result.size.toString() + "Suchergebnisse"
                                 }, { exception ->
@@ -88,7 +98,8 @@ class SearchActivity : AppCompatActivity() {
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe({ result ->
-                                    searchResult.text = result.first().Name
+                                    controller.initJoinList(result)
+                                    searchResult.text = result.first().getName()
                                     howManySearchResults.text =
                                         result.size.toString() + "Suchergebnisse"
                                 }, { exception ->
@@ -100,6 +111,7 @@ class SearchActivity : AppCompatActivity() {
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe({ result ->
+                                    controller.initJoinList(result)
                                     searchResult.text = result.first().getName()
                                     howManySearchResults.text =
                                         result.size.toString() + "Suchergebnisse"
@@ -123,7 +135,8 @@ class SearchActivity : AppCompatActivity() {
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({ result ->
-                                searchResult.text = result.first().Name
+                                controller.initJoinList(result)
+                                searchResult.text = result.first().getName()
                                 howManySearchResults.text =
                                     result.size.toString() + "Suchergebnisse"
                             }, { exception ->
@@ -135,7 +148,8 @@ class SearchActivity : AppCompatActivity() {
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({ result ->
-                                searchResult.text = result.first().Name
+                                controller.initJoinList(result)
+                                searchResult.text = result.first().getName()
                                 howManySearchResults.text =
                                     result.size.toString() + "Suchergebnisse"
                             }, { exception ->
@@ -147,6 +161,7 @@ class SearchActivity : AppCompatActivity() {
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({ result ->
+                                controller.initJoinList(result)
                                 searchResult.text = result.first().getName()
                                 howManySearchResults.text =
                                     result.size.toString() + "Suchergebnisse"
@@ -158,6 +173,7 @@ class SearchActivity : AppCompatActivity() {
                 return true
             }
         })
+        initRecycler()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -174,5 +190,17 @@ class SearchActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun initRecycler(){
+        val linearLayoutManager = LinearLayoutManager(this)
+        recyclerView.apply {
+            layoutManager = linearLayoutManager
+            setHasFixedSize(true)
+            adapter = controller.adapter
+            addItemDecoration(DividerItemDecoration(this@SearchActivity, linearLayoutManager.orientation))
+        }
+        //This statement builds model and add it to the recycler view
+        controller.requestModelBuild()
     }
 }

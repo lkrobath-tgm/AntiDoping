@@ -1,5 +1,6 @@
 package com.example.antidoping.dao
 
+import android.graphics.Paint
 import androidx.room.Dao
 import androidx.room.Query
 import com.example.antidoping.entities.JoinMedisSubstanceData
@@ -22,14 +23,14 @@ interface NadaDAO {
             WHERE Name LIKE '%'||:name||'%'
           """
     )
-    fun getSubstancesByName(name: String): Observable<List<Substances>>
+    fun getSubstancesByName(name: String): Observable<List<JoinMedisSubstanceData>>
 
     @Query(
         """SELECT * FROM Medis
             WHERE Name LIKE '%'||:name||'%'
           """
     )
-    fun getMedisByName(name: String): Observable<List<Medis>>
+    fun getMedisByName(name: String): Observable<List<JoinMedisSubstanceData>>
 
     /*@Query("SELECT * FROM Substances LEFT OUTER JOIN Medis WHERE Substances.Name LIKE '%'||:name||'%' OR Medis.Name LIKE '%'||:name||'%'")
     fun getSubstancesAndMedisByName(name:String): Observable<List<JoinMedisSubstanceData>>*/

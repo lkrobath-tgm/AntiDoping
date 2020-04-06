@@ -34,22 +34,12 @@ abstract class SingleItemModel :EpoxyModelWithHolder<SingleItemModel.ListHolder>
     @EpoxyAttribute
     var title:String? = ""
 
-    @EpoxyAttribute
-    var description:String = ""
-
-
     override fun bind(holder: ListHolder) {
         if(mediOrSubstanceImage != null){
             holder.imageView.setImageResource(mediOrSubstanceImage)
         }
-
-        /*holder.imageView?.setImageResource(inCompImage)
-        holder.imageView?.setImageResource(outCompImage)*/
         if(title != null){
             holder.titleView.text = title
-        }
-        if(description != null){
-            holder.descView.text = description
         }
     }
 
@@ -61,7 +51,6 @@ abstract class SingleItemModel :EpoxyModelWithHolder<SingleItemModel.ListHolder>
         override fun bindView(itemView: View) {
             imageView = itemView.image
             titleView = itemView.title
-            descView = itemView.description
         }
     }
 }
