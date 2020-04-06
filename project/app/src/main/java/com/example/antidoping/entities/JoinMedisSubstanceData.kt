@@ -1,8 +1,6 @@
-package com.example.antidoping
+package com.example.antidoping.entities
 
 import androidx.room.*
-import com.example.antidoping.entities.Medis
-import com.example.antidoping.entities.Substances
 
 /*@Entity(
     tableName = "JoinMedisSubstanceData",

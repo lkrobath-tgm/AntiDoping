@@ -2,6 +2,7 @@ package com.example.antidoping
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.example.antidoping.dao.NadaDAO
 import com.example.antidoping.entities.*
 
 @Database(

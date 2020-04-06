@@ -1,7 +1,8 @@
-package com.example.antidoping
+package com.example.antidoping.dao
 
 import androidx.room.Dao
 import androidx.room.Query
+import com.example.antidoping.entities.JoinMedisSubstanceData
 import com.example.antidoping.entities.Medis
 import com.example.antidoping.entities.Substances
 import com.example.antidoping.entities.Takings
