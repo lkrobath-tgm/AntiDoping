@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.content.DialogInterface
+import android.graphics.Paint
 import android.util.Log
 import android.view.KeyEvent
 import com.huma.room_for_asset.RoomAsset
@@ -40,6 +41,7 @@ class SearchActivity : AppCompatActivity() {
 
 
 
+
         database = RoomAsset.databaseBuilder(
             this,
             AppDatabase::class.java,
@@ -50,8 +52,6 @@ class SearchActivity : AppCompatActivity() {
         val searchText: SearchView = findViewById(R.id.searchView)
 
         val howManySearchResults:TextView = findViewById(R.id.howManySearch)
-
-        val searchResult:TextView = findViewById(R.id.textView3)
 
         val onlySubstance:CheckBox = findViewById(R.id.substance)
 
@@ -86,7 +86,7 @@ class SearchActivity : AppCompatActivity() {
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe({ result ->
                                     controller.initJoinList(result)
-                                    searchResult.text = result.first().getName()
+                                    controller.requestModelBuild()
                                     howManySearchResults.text =
                                         result.size.toString() + "Suchergebnisse"
                                 }, { exception ->
@@ -99,7 +99,8 @@ class SearchActivity : AppCompatActivity() {
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe({ result ->
                                     controller.initJoinList(result)
-                                    searchResult.text = result.first().getName()
+                                    controller.requestModelBuild()
+
                                     howManySearchResults.text =
                                         result.size.toString() + "Suchergebnisse"
                                 }, { exception ->
@@ -112,7 +113,8 @@ class SearchActivity : AppCompatActivity() {
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe({ result ->
                                     controller.initJoinList(result)
-                                    searchResult.text = result.first().getName()
+                                    controller.requestModelBuild()
+
                                     howManySearchResults.text =
                                         result.size.toString() + "Suchergebnisse"
                                 }, { exception ->
@@ -136,7 +138,8 @@ class SearchActivity : AppCompatActivity() {
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({ result ->
                                 controller.initJoinList(result)
-                                searchResult.text = result.first().getName()
+                                controller.requestModelBuild()
+
                                 howManySearchResults.text =
                                     result.size.toString() + "Suchergebnisse"
                             }, { exception ->
@@ -149,7 +152,8 @@ class SearchActivity : AppCompatActivity() {
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({ result ->
                                 controller.initJoinList(result)
-                                searchResult.text = result.first().getName()
+                                controller.requestModelBuild()
+
                                 howManySearchResults.text =
                                     result.size.toString() + "Suchergebnisse"
                             }, { exception ->
@@ -162,7 +166,8 @@ class SearchActivity : AppCompatActivity() {
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({ result ->
                                 controller.initJoinList(result)
-                                searchResult.text = result.first().getName()
+                                controller.requestModelBuild()
+
                                 howManySearchResults.text =
                                     result.size.toString() + "Suchergebnisse"
                             }, { exception ->

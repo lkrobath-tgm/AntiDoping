@@ -1,13 +1,15 @@
 package com.example.antidoping.epoxy
 
 
+import com.airbnb.epoxy.AutoModel
 import com.airbnb.epoxy.EpoxyController
 import com.example.antidoping.R
 import com.example.antidoping.entities.JoinMedisSubstanceData
 
 
 class SingleItemController :EpoxyController(){
-    var listMedis: List<JoinMedisSubstanceData> = arrayListOf()
+    private var listMedis: List<JoinMedisSubstanceData> = arrayListOf()
+    private var index = 0L
 
     fun initJoinList(result:List<JoinMedisSubstanceData>){
         listMedis = arrayListOf()
@@ -15,22 +17,25 @@ class SingleItemController :EpoxyController(){
     }
 
     override fun buildModels() {
-        var i:Long =0
+
 
         listMedis.forEach {item ->
             if(item.getMedisName().equals("")){
-                SingleItemModel_()
-                    .id(i++)
-                    .mediOrSubstanceImage(R.drawable.ic_medicine)
-                    .title(item.getName())
+                SingleItemModel_(item)
+                    .id(index++)
+                    //.mediOrSubstanceImage(R.drawable.ic_medicine)
+                    //.title(item.getName())
                     .addTo(this)
             }else{
-                SingleItemModel_()
-                    .id(i++)
-                    .mediOrSubstanceImage(R.drawable.ic_substance)
-                    .title(item.getName())
+                SingleItemModel_(item)
+                    .id(index++)
+                    //.image(R.drawable.ic_substance)
+                    //.title(item.getName())
                     .addTo(this)
             }
+
         }
+
+
     }
 }

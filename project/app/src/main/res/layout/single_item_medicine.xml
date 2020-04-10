@@ -36,16 +36,6 @@
         app:layout_constraintStart_toStartOf="@+id/singleItem"
         app:layout_constraintTop_toTopOf="@+id/singleItem" />
 
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="14dp"
-        android:text="Beschreibung"
-        app:layout_constraintStart_toEndOf="@+id/image"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
     <ImageView
         android:id="@+id/inComp"
         android:layout_width="wrap_content"
@@ -66,4 +56,13 @@
         app:layout_constraintTop_toTopOf="@+id/image"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_out_comp_allowed" />
+
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:visibility="invisible"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="100dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
