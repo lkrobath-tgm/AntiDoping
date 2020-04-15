@@ -16,6 +16,10 @@ class SingleItemController :EpoxyController(){
         listMedis = result
     }
 
+    fun initHowManyResults() : String{
+        return listMedis.size.toString() + " Suchergebnisse"
+    }
+
     override fun buildModels() {
 
 

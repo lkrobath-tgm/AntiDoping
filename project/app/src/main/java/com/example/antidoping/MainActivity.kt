@@ -86,8 +86,6 @@ class MainActivity : AppCompatActivity() {
     private fun checkAndRequestPermissions(): Boolean {
         val camerapermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
         val writepermission = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        val permissionLocation = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-        val permissionRecordAudio = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
 
 
         val listPermissionsNeeded = ArrayList<String>()
@@ -97,12 +95,6 @@ class MainActivity : AppCompatActivity() {
         }
         if (writepermission != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        }
-        if (permissionLocation != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.ACCESS_FINE_LOCATION)
-        }
-        if (permissionRecordAudio != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.RECORD_AUDIO)
         }
         if (!listPermissionsNeeded.isEmpty()) {
             ActivityCompat.requestPermissions(this, listPermissionsNeeded.toTypedArray(),
@@ -122,17 +114,15 @@ class MainActivity : AppCompatActivity() {
                 // Initialize the map with both permissions
                 perms[Manifest.permission.CAMERA] = PackageManager.PERMISSION_GRANTED
                 perms[Manifest.permission.WRITE_EXTERNAL_STORAGE] = PackageManager.PERMISSION_GRANTED
-                perms[Manifest.permission.ACCESS_FINE_LOCATION] = PackageManager.PERMISSION_GRANTED
-                perms[Manifest.permission.RECORD_AUDIO] = PackageManager.PERMISSION_GRANTED
+
+
                 // Fill with actual results from user
                 if (grantResults.size > 0) {
                     for (i in permissions.indices)
                         perms[permissions[i]] = grantResults[i]
                     // Check for both permissions
                     if (perms[Manifest.permission.CAMERA] == PackageManager.PERMISSION_GRANTED
-                        && perms[Manifest.permission.WRITE_EXTERNAL_STORAGE] == PackageManager.PERMISSION_GRANTED
-                        && perms[Manifest.permission.ACCESS_FINE_LOCATION] == PackageManager.PERMISSION_GRANTED
-                        && perms[Manifest.permission.RECORD_AUDIO] == PackageManager.PERMISSION_GRANTED) {
+                        && perms[Manifest.permission.WRITE_EXTERNAL_STORAGE] == PackageManager.PERMISSION_GRANTED) {
                         Log.d(TAG, "sms & location services permission granted")
                         // process the normal flow
                         val i = Intent(this@MainActivity, ScanActivity::class.java)
@@ -145,9 +135,7 @@ class MainActivity : AppCompatActivity() {
                         //                        // shouldShowRequestPermissionRationale will return true
                         //show the dialog or snackbar saying its necessary and try again otherwise proceed with setup.
                         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)
-                            || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                            || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                            || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECORD_AUDIO)) {
+                            || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                             showDialogOK("Service Permissions are required for this app",
                                 DialogInterface.OnClickListener { dialog, which ->
                                     when (which) {

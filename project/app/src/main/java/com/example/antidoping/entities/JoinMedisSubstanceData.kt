@@ -18,11 +18,27 @@ class JoinMedisSubstanceData {
     }
 
     fun getName():String?{
-        return medis?.Name+substance?.Name
+        if(getType().equals("Medi")){
+            return medis?.Name
+        }else{
+            return substance?.Name
+        }
     }
 
-    fun getDescription():String?{
-        return ""
+    fun getType():String?{
+        if(medis?.InCompetition == null){
+            return "Substance"
+        }else{
+            return "Medi"
+        }
+    }
+
+    fun getInComp():Int?{
+        return medis?.InCompetition
+    }
+
+    fun getOutComp():Int?{
+        return medis?.OutCompetition
     }
 
 }

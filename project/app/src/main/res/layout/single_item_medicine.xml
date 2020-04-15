@@ -9,8 +9,8 @@
 
     <View
         android:id="@+id/singleItem"
-        android:layout_width="367dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

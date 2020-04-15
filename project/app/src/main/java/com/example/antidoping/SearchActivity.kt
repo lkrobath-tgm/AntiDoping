@@ -88,7 +88,7 @@ class SearchActivity : AppCompatActivity() {
                                     controller.initJoinList(result)
                                     controller.requestModelBuild()
                                     howManySearchResults.text =
-                                        result.size.toString() + "Suchergebnisse"
+                                        controller.initHowManyResults()
                                 }, { exception ->
                                     Log.e("Exception", "$exception")
                                 })
