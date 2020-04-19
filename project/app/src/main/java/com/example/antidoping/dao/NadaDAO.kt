@@ -35,8 +35,14 @@ interface NadaDAO {
     /*@Query("SELECT * FROM Substances LEFT OUTER JOIN Medis WHERE Substances.Name LIKE '%'||:name||'%' OR Medis.Name LIKE '%'||:name||'%'")
     fun getSubstancesAndMedisByName(name:String): Observable<List<JoinMedisSubstanceData>>*/
     //Data class mit Room annotations
+    @Query("SELECT Medis.Name, Medis.Uid, Medis.InCompetition, Medis.OutCompetition FROM Medis WHERE Medis.Name LIKE '%'||:name||'%'")
+    fun getMedisInJoin(name: String):Observable<List<JoinMedisSubstanceData>>
 
-    @Query("SELECT Substances.Name, Substances.Uid FROM Substances WHERE Substances.Name LIKE '%'||:name||'%' UNION SELECT * FROM Medis WHERE Medis.Name LIKE '%'||:name||'%'")
+    @Query("SELECT * FROM Substances WHERE Substances.Name LIKE '%'||:name||'%'")
+    fun getSubstancesInJoin(name: String):Observable<List<JoinMedisSubstanceData>>
+
+
+    @Query("SELECT Substances.Name, Substances.Uid FROM Substances WHERE Substances.Name LIKE '%'||:name||'%' UNION SELECT Medis.Name, Medis.Uid FROM Medis WHERE Medis.Name LIKE '%'||:name||'%'")
     fun getMedisAndSubstances(name: String):Observable<List<JoinMedisSubstanceData>>
 
 

@@ -26,10 +26,10 @@ class JoinMedisSubstanceData {
     }
 
     fun getType():String?{
-        if(medis?.InCompetition == null){
-            return "Substance"
-        }else{
+        if(substance == null){
             return "Medi"
+        }else{
+            return "Substance"
         }
     }
 

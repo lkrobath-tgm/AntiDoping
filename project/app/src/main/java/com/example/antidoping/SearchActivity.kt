@@ -30,6 +30,8 @@ class SearchActivity : AppCompatActivity() {
     var isSubstance:Boolean = false
     var isMedicine:Boolean = false
 
+    lateinit var itemsList:List<JoinMedisSubstanceData>
+
 
     private val controller:SingleItemController by lazy {SingleItemController()}
     private val recyclerView : RecyclerView by lazy { findViewById<RecyclerView>(R.id.recyclerView) }
@@ -81,6 +83,19 @@ class SearchActivity : AppCompatActivity() {
                     }else {
                         var notNullQuery: String = query
                         if(isMedicine){
+                            /*profileDAO.getMedisInJoin(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    itemsList = result
+                                    controller.initJoinList(result)
+                                    controller.requestModelBuild()
+                                    howManySearchResults.text =
+                                        controller.initHowManyResults()
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })*/
+
                             profileDAO.getMedisByName(notNullQuery)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
@@ -94,6 +109,19 @@ class SearchActivity : AppCompatActivity() {
                                 })
                         }
                         if(isSubstance){
+                            /*profileDAO.getSubstancesInJoin(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    itemsList = result
+                                    controller.initJoinList(result)
+                                    controller.requestModelBuild()
+                                    howManySearchResults.text =
+                                        controller.initHowManyResults()
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })*/
+
                             profileDAO.getSubstancesByName(notNullQuery)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
@@ -108,6 +136,33 @@ class SearchActivity : AppCompatActivity() {
                                 })
                         }
                         if(isSubstance == false && isMedicine == false) {
+                            /*profileDAO.getSubstancesInJoin(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    itemsList += result
+                                    controller.initJoinList(result)
+                                    controller.requestModelBuild()
+                                    howManySearchResults.text =
+                                        controller.initHowManyResults()
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })
+
+                            profileDAO.getMedisInJoin(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    itemsList += result
+                                    controller.initJoinList(result)
+                                    controller.requestModelBuild()
+                                    howManySearchResults.text =
+                                        controller.initHowManyResults()
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })*/
+
+
                             profileDAO.getMedisAndSubstances(notNullQuery)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
@@ -133,6 +188,21 @@ class SearchActivity : AppCompatActivity() {
                     howManySearchResults.text = "0 Suchergebnisse"
                 }else{
                     if(isMedicine){
+
+                        /*profileDAO.getMedisInJoin(newText)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({ result ->
+                                itemsList = result
+                                controller.initJoinList(result)
+                                controller.requestModelBuild()
+                                howManySearchResults.text =
+                                    controller.initHowManyResults()
+                            }, { exception ->
+                                Log.e("Exception", "$exception")
+                            })*/
+
+
                         profileDAO.getMedisByName(newText)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
@@ -147,6 +217,20 @@ class SearchActivity : AppCompatActivity() {
                             })
                     }
                     if(isSubstance){
+                        /*profileDAO.getSubstancesInJoin(newText)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({ result ->
+                                itemsList = result
+                                controller.initJoinList(result)
+                                controller.requestModelBuild()
+                                howManySearchResults.text =
+                                    controller.initHowManyResults()
+                            }, { exception ->
+                                Log.e("Exception", "$exception")
+                            })*/
+
+
                         profileDAO.getSubstancesByName(newText)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
@@ -173,6 +257,32 @@ class SearchActivity : AppCompatActivity() {
                             }, { exception ->
                                 Log.e("Exception", "$exception")
                             })
+
+                        /*profileDAO.getSubstancesInJoin(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    itemsList += result
+                                    controller.initJoinList(result)
+                                    controller.requestModelBuild()
+                                    howManySearchResults.text =
+                                        controller.initHowManyResults()
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })
+
+                            profileDAO.getMedisInJoin(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    itemsList += result
+                                    controller.initJoinList(result)
+                                    controller.requestModelBuild()
+                                    howManySearchResults.text =
+                                        controller.initHowManyResults()
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })*/
                     }
                 }
                 return true
