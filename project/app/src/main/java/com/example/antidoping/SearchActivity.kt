@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.content.DialogInterface
+import android.graphics.Paint
 import android.util.Log
 import android.view.KeyEvent
 import com.huma.room_for_asset.RoomAsset
@@ -14,16 +15,31 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 import android.view.KeyEvent.KEYCODE_ENTER
 import android.widget.*
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.antidoping.entities.JoinMedisSubstanceData
+import com.example.antidoping.epoxy.SingleItemController
+import org.w3c.dom.Text
 
 
 class SearchActivity : AppCompatActivity() {
     private var btn: Button? = null
     private val TAG = "tag"
     lateinit var database: AppDatabase
+    var isSubstance:Boolean = false
+    var isMedicine:Boolean = false
+
+    lateinit var itemsList:List<JoinMedisSubstanceData>
+
+
+    private val controller:SingleItemController by lazy {SingleItemController()}
+    private val recyclerView : RecyclerView by lazy { findViewById<RecyclerView>(R.id.recyclerView) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.suche_layout_main)
+
 
 
 
@@ -37,21 +53,130 @@ class SearchActivity : AppCompatActivity() {
 
         val searchText: SearchView = findViewById(R.id.searchView)
 
-        val searchResult: TextView = findViewById(R.id.textView3)
+        val howManySearchResults:TextView = findViewById(R.id.howManySearch)
+
+        val onlySubstance:CheckBox = findViewById(R.id.substance)
+
+        val onlyMedicine:CheckBox = findViewById(R.id.medicine)
 
 
+        onlySubstance.setOnClickListener {
+            if(onlySubstance.isChecked){
+                isSubstance = true
+                Toast.makeText(applicationContext, "Substanz", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        onlyMedicine.setOnClickListener {
+            if(onlyMedicine.isChecked){
+                isMedicine = true
+                Toast.makeText(applicationContext, "Medizin", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        //Search Query
         searchText.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if(query != null){
-                    var notNullQuery:String = query
-                    profileDAO.getMedisAndSubstances(query)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({result ->
-                            searchResult.text = result.first().getName()
-                        },{exception ->
-                            Log.e("Exception","$exception")
-                        })
+                    if(query.equals("") || query.equals(" ")){
+                        howManySearchResults.text = "0 Suchergebnisse"
+                    }else {
+                        var notNullQuery: String = query
+                        if(isMedicine){
+                            /*profileDAO.getMedisInJoin(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    itemsList = result
+                                    controller.initJoinList(result)
+                                    controller.requestModelBuild()
+                                    howManySearchResults.text =
+                                        controller.initHowManyResults()
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })*/
+
+                            profileDAO.getMedisByName(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    controller.initJoinList(result)
+                                    controller.requestModelBuild()
+                                    howManySearchResults.text =
+                                        controller.initHowManyResults()
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })
+                        }
+                        if(isSubstance){
+                            /*profileDAO.getSubstancesInJoin(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    itemsList = result
+                                    controller.initJoinList(result)
+                                    controller.requestModelBuild()
+                                    howManySearchResults.text =
+                                        controller.initHowManyResults()
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })*/
+
+                            profileDAO.getSubstancesByName(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    controller.initJoinList(result)
+                                    controller.requestModelBuild()
+
+                                    howManySearchResults.text =
+                                        result.size.toString() + "Suchergebnisse"
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })
+                        }
+                        if(isSubstance == false && isMedicine == false) {
+                            /*profileDAO.getSubstancesInJoin(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    itemsList += result
+                                    controller.initJoinList(result)
+                                    controller.requestModelBuild()
+                                    howManySearchResults.text =
+                                        controller.initHowManyResults()
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })
+
+                            profileDAO.getMedisInJoin(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    itemsList += result
+                                    controller.initJoinList(result)
+                                    controller.requestModelBuild()
+                                    howManySearchResults.text =
+                                        controller.initHowManyResults()
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })*/
+
+
+                            profileDAO.getMedisAndSubstances(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    controller.initJoinList(result)
+                                    controller.requestModelBuild()
+
+                                    howManySearchResults.text =
+                                        result.size.toString() + "Suchergebnisse"
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })
+                        }
+                    }
                 }else{
                     Toast.makeText(applicationContext, "There is no word that we can search for! ", Toast.LENGTH_SHORT).show();
                 }
@@ -59,18 +184,111 @@ class SearchActivity : AppCompatActivity() {
                 return false
             }
             override fun onQueryTextChange(newText: String): Boolean {
-                profileDAO.getMedisAndSubstances(newText)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({result ->
-                        searchResult.text = result.first().getName()
+                if(newText.equals("") || newText.equals(" ")){
+                    howManySearchResults.text = "0 Suchergebnisse"
+                }else{
+                    if(isMedicine){
 
-                    },{exception ->
-                        Log.e("Exception","$exception")
-                    })
+                        /*profileDAO.getMedisInJoin(newText)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({ result ->
+                                itemsList = result
+                                controller.initJoinList(result)
+                                controller.requestModelBuild()
+                                howManySearchResults.text =
+                                    controller.initHowManyResults()
+                            }, { exception ->
+                                Log.e("Exception", "$exception")
+                            })*/
+
+
+                        profileDAO.getMedisByName(newText)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({ result ->
+                                controller.initJoinList(result)
+                                controller.requestModelBuild()
+
+                                howManySearchResults.text =
+                                    result.size.toString() + "Suchergebnisse"
+                            }, { exception ->
+                                Log.e("Exception", "$exception")
+                            })
+                    }
+                    if(isSubstance){
+                        /*profileDAO.getSubstancesInJoin(newText)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({ result ->
+                                itemsList = result
+                                controller.initJoinList(result)
+                                controller.requestModelBuild()
+                                howManySearchResults.text =
+                                    controller.initHowManyResults()
+                            }, { exception ->
+                                Log.e("Exception", "$exception")
+                            })*/
+
+
+                        profileDAO.getSubstancesByName(newText)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({ result ->
+                                controller.initJoinList(result)
+                                controller.requestModelBuild()
+
+                                howManySearchResults.text =
+                                    result.size.toString() + "Suchergebnisse"
+                            }, { exception ->
+                                Log.e("Exception", "$exception")
+                            })
+                    }
+                    if(isSubstance == false && isMedicine == false) {
+                        profileDAO.getMedisAndSubstances(newText)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({ result ->
+                                controller.initJoinList(result)
+                                controller.requestModelBuild()
+
+                                howManySearchResults.text =
+                                    result.size.toString() + "Suchergebnisse"
+                            }, { exception ->
+                                Log.e("Exception", "$exception")
+                            })
+
+                        /*profileDAO.getSubstancesInJoin(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    itemsList += result
+                                    controller.initJoinList(result)
+                                    controller.requestModelBuild()
+                                    howManySearchResults.text =
+                                        controller.initHowManyResults()
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })
+
+                            profileDAO.getMedisInJoin(notNullQuery)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ result ->
+                                    itemsList += result
+                                    controller.initJoinList(result)
+                                    controller.requestModelBuild()
+                                    howManySearchResults.text =
+                                        controller.initHowManyResults()
+                                }, { exception ->
+                                    Log.e("Exception", "$exception")
+                                })*/
+                    }
+                }
                 return true
             }
         })
+        initRecycler()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -87,5 +305,17 @@ class SearchActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun initRecycler(){
+        val linearLayoutManager = LinearLayoutManager(this)
+        recyclerView.apply {
+            layoutManager = linearLayoutManager
+            setHasFixedSize(true)
+            adapter = controller.adapter
+            addItemDecoration(DividerItemDecoration(this@SearchActivity, linearLayoutManager.orientation))
+        }
+        //This statement builds model and add it to the recycler view
+        controller.requestModelBuild()
     }
 }

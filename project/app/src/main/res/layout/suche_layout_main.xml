@@ -5,7 +5,7 @@
     android:id="@+id/linearLayout2"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/background_gray"
     android:clickable="true"
     android:focusable="true">
 
@@ -29,7 +29,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/TopBlueBg">
+        app:layout_constraintTop_toTopOf="@+id/TopBlueBg"
+        android:focusable="true">
 
     </SearchView>
 
@@ -48,7 +49,7 @@
         app:srcCompat="@drawable/ic_more_vert" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/medicine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -62,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/substance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:buttonTint="@color/cardview_light_background"
@@ -71,45 +72,8 @@
         android:textColorLink="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.234"
-        app:layout_constraintStart_toEndOf="@+id/checkBox"
-        app:layout_constraintTop_toTopOf="@+id/checkBox" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TopBlueBg"
-        app:srcCompat="@drawable/ic_not_found_blue"
-        android:contentDescription="TODO" />
-
-    <TextView
-        android:id="@+id/KeinTrefferView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/NiGefText"
-        android:textColor="#14294A"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-    <TextView
-        android:id="@+id/KeinTrefferTextView"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/NiGefLangText"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/KeinTrefferView" />
+        app:layout_constraintStart_toEndOf="@+id/medicine"
+        app:layout_constraintTop_toTopOf="@+id/medicine" />
 
     <Button
         android:id="@+id/MedScanButton"
@@ -124,27 +88,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/BenHinView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/BenHinText"
-        android:textColor="#14294A"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/MedScanButton"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="355dp"
+        android:layout_height="406dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/KeinTrefferTextView"
-        app:layout_constraintVertical_bias="0.859" />
+        app:layout_constraintTop_toBottomOf="@+id/howManySearch" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/howManySearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Test"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/no_searching_results"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        app:layout_constraintTop_toBottomOf="@+id/TopBlueBg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
