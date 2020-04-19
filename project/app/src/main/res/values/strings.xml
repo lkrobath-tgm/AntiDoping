@@ -23,5 +23,6 @@
 <string name="benutzerhinweiseButton">Benutzerhinweis</string>
 <string name="oslButton">Open Source Lizenz</string>
 <string name="impressumButton">Impressum</string>
+    <string name="backbutton">backButton</string>
 
 </resources>
