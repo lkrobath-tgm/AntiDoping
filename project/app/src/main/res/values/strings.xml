@@ -25,4 +25,16 @@
 <string name="impressumButton">Impressum</string>
 <string name="no_searching_results">0 Suchergebnisse</string>
 <string name="backbutton">backButton</string>
+<string name="forbidden_ingredient">Verbotene Inhaltsstoffe ()</string>
+<string name="side_effects">Nebenwirkungen</string>
+<string name="effectiveness">Wirksamkeit</string>
+<string name="side_effects_details">Magen/Darm (mit Blutungen, Ulzera), ZNS, Blutungen, Überempfindlichkeit, Niere, Ödeme, Hypertonie, Herzinsuffizienz</string>
+<string name="effectiveness_detail">Analgetisch, antipyretisch, antiphlogisch</string>
+<string name="application">Anwendungsgebiete</string>
+<string name="application_detail">Schmerzen verschiedener Art, Erkältungskrankheiten, grippale Infekte</string>
+<string name="forbidden">verboten</string>
+<string name="competition">Im Wettkampf</string>
+<string name="besides">Ausserhalb</string>
+<string name="drug_name">Medikamentenname</string>
+<string name="legal">erlaubt</string>
 </resources>
