@@ -23,6 +23,11 @@
     <activity android:name=".ScanActivity"></activity>
     <activity android:name=".MenuActivity"></activity>
     <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".VerbotActivity"></activity>
+        <activity android:name=".ImpressumActivity"></activity>
+        <activity android:name=".BenutzerActivity"></activity>
+        <activity android:name=".OSLActivity"></activity>
+
 </application>
 
 </manifest>
