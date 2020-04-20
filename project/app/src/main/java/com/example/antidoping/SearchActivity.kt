@@ -109,7 +109,7 @@ class SearchActivity : AppCompatActivity() {
                                 })
                         }
                         if(isSubstance){
-                            /*profileDAO.getSubstancesInJoin(notNullQuery)
+                            profileDAO.getSubstancesInJoin(notNullQuery)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe({ result ->
@@ -120,7 +120,7 @@ class SearchActivity : AppCompatActivity() {
                                         controller.initHowManyResults()
                                 }, { exception ->
                                     Log.e("Exception", "$exception")
-                                })*/
+                                })
 
                             profileDAO.getSubstancesByName(notNullQuery)
                                 .subscribeOn(Schedulers.io())
