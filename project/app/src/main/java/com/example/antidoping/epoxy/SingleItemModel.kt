@@ -36,6 +36,8 @@ abstract class SingleItemModel (@EpoxyAttribute var item: JoinMedisSubstanceData
 
         holder.titleView.text = item.getName()
 
+        //Hier Onclicklistener
+
     }
 
     inner class ListHolder : KotlinHolder(){
