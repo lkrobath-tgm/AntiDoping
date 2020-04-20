@@ -13,7 +13,7 @@ import com.example.antidoping.R
 import com.example.antidoping.entities.JoinMedisSubstanceData
 import kotlinx.android.synthetic.main.single_item_medicine.view.*
 
-@EpoxyModelClass(layout = R.layout.single_item_medicine)
+@EpoxyModelClass(layout = R.layout.singlemedicine_layout)
 abstract class SingleItemModel (@EpoxyAttribute var item: JoinMedisSubstanceData) : EpoxyModelWithHolder<SingleItemModel.ListHolder>(){
 
     override fun bind(holder: ListHolder) {
