@@ -21,25 +21,20 @@ class SingleItemController :EpoxyController(){
     }
 
     override fun buildModels() {
-
-
         listMedis.forEach {item ->
             if(item.getMedisName().equals("")){
                 SingleItemModel_(item)
                     .id(index++)
-                    //.mediOrSubstanceImage(R.drawable.ic_medicine)
-                    //.title(item.getName())
                     .addTo(this)
             }else{
                 SingleItemModel_(item)
                     .id(index++)
-                    //.image(R.drawable.ic_substance)
-                    //.title(item.getName())
                     .addTo(this)
             }
-
         }
+    }
 
-
+    fun getListMedis():List<JoinMedisSubstanceData>{
+        return listMedis
     }
 }

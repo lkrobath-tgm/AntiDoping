@@ -38,11 +38,16 @@ abstract class SingleItemModel (@EpoxyAttribute var item: JoinMedisSubstanceData
 
     }
 
-    inner class ListHolder : KotlinHolder(){
+    inner class ListHolder : KotlinHolder(), View.OnClickListener{
+        override fun onClick(v: View?) {
+
+        }
+
         val imageView by bind<ImageView>(R.id.image)
         val inCompView by bind<ImageView>(R.id.inComp)
         val outCompView by bind<ImageView>(R.id.outComp)
         val titleView by bind<TextView>(R.id.title)
         val typeView by bind<TextView>(R.id.type)
+
     }
 }
