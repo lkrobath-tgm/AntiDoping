@@ -229,7 +229,7 @@ class SearchActivity : AppCompatActivity() {
         //This statement builds model and add it to the recycler view
         controller.requestModelBuild()
     }
-    fun getContext(): Context{
-        return this.getContext()
+    fun startIntent(intent:Intent){
+        startActivity(intent)
     }
 }

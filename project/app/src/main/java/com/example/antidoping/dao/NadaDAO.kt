@@ -44,4 +44,7 @@ interface NadaDAO {
 
     @Query("SELECT Substances.Name, Substances.Uid FROM Substances WHERE Substances.Name LIKE '%'||:name||'%' UNION SELECT Medis.Name, Medis.Uid FROM Medis WHERE Medis.Name LIKE '%'||:name||'%'")
     fun getMedisAndSubstances(name: String):Observable<List<JoinMedisSubstanceData>>
+
+    @Query("SELECT Substances.Name, Substances.Uid FROM Substances WHERE Substances.Uid == :id UNION SELECT Medis.Name, Medis.Uid FROM Medis WHERE Medis.Uid == :id")
+    fun getMedisOrSubstanceById(id:String):Observable<JoinMedisSubstanceData>
 }

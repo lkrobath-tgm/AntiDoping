@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.single_item_medicine.view.*
 abstract class SingleItemModel (@EpoxyAttribute var item: JoinMedisSubstanceData) : EpoxyModelWithHolder<SingleItemModel.ListHolder>(){
 
     override fun bind(holder: ListHolder) {
+        holder.titleView.text = item.getName()
         holder.typeView.text = item.getType()
         if(holder.typeView.text.equals("Medi")){
             holder.imageView.setImageResource(R.drawable.ic_medicine)
@@ -40,15 +42,11 @@ abstract class SingleItemModel (@EpoxyAttribute var item: JoinMedisSubstanceData
             holder.imageView.setImageResource(R.drawable.ic_substance)
         }
 
-        holder.titleView.setOnClickListener({
+        holder.titleView.setOnClickListener {
             val intent = Intent(holder.titleView.context, DetailseiteActivity::class.java)
             intent.putExtra("id",item.getId())
-        })
-
-
-
-        //Hier Onclicklistener
-
+            holder.titleView.context.startActivity(intent)
+        }
     }
 
     inner class ListHolder : KotlinHolder(), View.OnClickListener{
