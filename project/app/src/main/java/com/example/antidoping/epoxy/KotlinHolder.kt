@@ -1,7 +1,9 @@
 package com.example.antidoping.epoxy
 
+import android.content.Intent
 import android.view.View
 import com.airbnb.epoxy.EpoxyHolder
+import com.example.antidoping.DetailActivity
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 

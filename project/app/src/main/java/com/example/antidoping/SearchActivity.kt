@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Paint
 import android.util.Log
 import android.view.KeyEvent
@@ -22,6 +23,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.antidoping.entities.JoinMedisSubstanceData
 import com.example.antidoping.epoxy.SingleItemController
 import org.w3c.dom.Text
+import android.widget.AdapterView.OnItemClickListener
+
+
 
 
 class SearchActivity : AppCompatActivity() {
@@ -41,6 +45,7 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.suche_layout_main)
 
+        val recyclerView:RecyclerView = findViewById(R.id.recyclerView)
 
 
 
@@ -84,25 +89,13 @@ class SearchActivity : AppCompatActivity() {
                     }else {
                         var notNullQuery: String = query
                         if(isMedicine){
-                            /*profileDAO.getMedisInJoin(notNullQuery)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe({ result ->
-                                    itemsList = result
-                                    controller.initJoinList(result)
-                                    controller.requestModelBuild()
-                                    howManySearchResults.text =
-                                        controller.initHowManyResults()
-                                }, { exception ->
-                                    Log.e("Exception", "$exception")
-                                })*/
-
                             profileDAO.getMedisByName(notNullQuery)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe({ result ->
                                     controller.initJoinList(result)
                                     controller.requestModelBuild()
+                                    itemsList = controller.getListMedis()
                                     howManySearchResults.text =
                                         controller.initHowManyResults()
                                 }, { exception ->
@@ -110,26 +103,13 @@ class SearchActivity : AppCompatActivity() {
                                 })
                         }
                         if(isSubstance){
-                            profileDAO.getSubstancesInJoin(notNullQuery)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe({ result ->
-                                    itemsList = result
-                                    controller.initJoinList(result)
-                                    controller.requestModelBuild()
-                                    howManySearchResults.text =
-                                        controller.initHowManyResults()
-                                }, { exception ->
-                                    Log.e("Exception", "$exception")
-                                })
-
                             profileDAO.getSubstancesByName(notNullQuery)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe({ result ->
                                     controller.initJoinList(result)
                                     controller.requestModelBuild()
-
+                                    itemsList = controller.getListMedis()
                                     howManySearchResults.text =
                                         result.size.toString() + "Suchergebnisse"
                                 }, { exception ->
@@ -137,32 +117,6 @@ class SearchActivity : AppCompatActivity() {
                                 })
                         }
                         if(isSubstance == false && isMedicine == false) {
-                            /*profileDAO.getSubstancesInJoin(notNullQuery)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe({ result ->
-                                    itemsList += result
-                                    controller.initJoinList(result)
-                                    controller.requestModelBuild()
-                                    howManySearchResults.text =
-                                        controller.initHowManyResults()
-                                }, { exception ->
-                                    Log.e("Exception", "$exception")
-                                })
-
-                            profileDAO.getMedisInJoin(notNullQuery)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe({ result ->
-                                    itemsList += result
-                                    controller.initJoinList(result)
-                                    controller.requestModelBuild()
-                                    howManySearchResults.text =
-                                        controller.initHowManyResults()
-                                }, { exception ->
-                                    Log.e("Exception", "$exception")
-                                })*/
-
 
                             profileDAO.getMedisAndSubstances(notNullQuery)
                                 .subscribeOn(Schedulers.io())
@@ -170,7 +124,7 @@ class SearchActivity : AppCompatActivity() {
                                 .subscribe({ result ->
                                     controller.initJoinList(result)
                                     controller.requestModelBuild()
-
+                                    itemsList = controller.getListMedis()
                                     howManySearchResults.text =
                                         result.size.toString() + "Suchergebnisse"
                                 }, { exception ->
@@ -190,27 +144,13 @@ class SearchActivity : AppCompatActivity() {
                 }else{
                     if(isMedicine){
 
-                        /*profileDAO.getMedisInJoin(newText)
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({ result ->
-                                itemsList = result
-                                controller.initJoinList(result)
-                                controller.requestModelBuild()
-                                howManySearchResults.text =
-                                    controller.initHowManyResults()
-                            }, { exception ->
-                                Log.e("Exception", "$exception")
-                            })*/
-
-
                         profileDAO.getMedisByName(newText)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({ result ->
                                 controller.initJoinList(result)
                                 controller.requestModelBuild()
-
+                                itemsList = controller.getListMedis()
                                 howManySearchResults.text =
                                     result.size.toString() + "Suchergebnisse"
                             }, { exception ->
@@ -218,19 +158,6 @@ class SearchActivity : AppCompatActivity() {
                             })
                     }
                     if(isSubstance){
-                        /*profileDAO.getSubstancesInJoin(newText)
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({ result ->
-                                itemsList = result
-                                controller.initJoinList(result)
-                                controller.requestModelBuild()
-                                howManySearchResults.text =
-                                    controller.initHowManyResults()
-                            }, { exception ->
-                                Log.e("Exception", "$exception")
-                            })*/
-
 
                         profileDAO.getSubstancesByName(newText)
                             .subscribeOn(Schedulers.io())
@@ -238,7 +165,7 @@ class SearchActivity : AppCompatActivity() {
                             .subscribe({ result ->
                                 controller.initJoinList(result)
                                 controller.requestModelBuild()
-
+                                itemsList = controller.getListMedis()
                                 howManySearchResults.text =
                                     result.size.toString() + "Suchergebnisse"
                             }, { exception ->
@@ -252,38 +179,13 @@ class SearchActivity : AppCompatActivity() {
                             .subscribe({ result ->
                                 controller.initJoinList(result)
                                 controller.requestModelBuild()
-
+                                itemsList = controller.getListMedis()
                                 howManySearchResults.text =
                                     result.size.toString() + "Suchergebnisse"
                             }, { exception ->
                                 Log.e("Exception", "$exception")
                             })
 
-                        /*profileDAO.getSubstancesInJoin(notNullQuery)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe({ result ->
-                                    itemsList += result
-                                    controller.initJoinList(result)
-                                    controller.requestModelBuild()
-                                    howManySearchResults.text =
-                                        controller.initHowManyResults()
-                                }, { exception ->
-                                    Log.e("Exception", "$exception")
-                                })
-
-                            profileDAO.getMedisInJoin(notNullQuery)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe({ result ->
-                                    itemsList += result
-                                    controller.initJoinList(result)
-                                    controller.requestModelBuild()
-                                    howManySearchResults.text =
-                                        controller.initHowManyResults()
-                                }, { exception ->
-                                    Log.e("Exception", "$exception")
-                                })*/
                     }
                 }
                 return true
@@ -306,6 +208,14 @@ class SearchActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+
+    fun onItemClick(position: Int) {
+        itemsList = controller.getListMedis()
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("selected_note", "test")
+        startActivity(intent)
     }
 
     private fun initRecycler(){
