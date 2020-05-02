@@ -1,5 +1,6 @@
 package com.example.antidoping
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
@@ -227,5 +228,8 @@ class SearchActivity : AppCompatActivity() {
         }
         //This statement builds model and add it to the recycler view
         controller.requestModelBuild()
+    }
+    fun getContext(): Context{
+        return this.getContext()
     }
 }

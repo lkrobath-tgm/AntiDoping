@@ -24,7 +24,9 @@ class SingleItemController :EpoxyController(){
         listMedis.forEach {item ->
             if(item.getMedisName().equals("")){
                 SingleItemModel_(item)
-                    .id(index++)
+                    .id(item.getId())
+                    //.mediOrSubstanceImage(R.drawable.ic_medicine)
+                    //.title(item.getName())
                     .addTo(this)
             }else{
                 SingleItemModel_(item)

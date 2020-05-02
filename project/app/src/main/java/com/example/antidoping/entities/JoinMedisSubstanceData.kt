@@ -41,4 +41,12 @@ class JoinMedisSubstanceData {
         return medis?.OutCompetition
     }
 
+    fun getId():Int?{
+        if(getType().equals("Medi")){
+            return medis?.Uid
+        }else{
+            return substance?.Uid
+        }
+    }
+
 }

@@ -1,15 +1,21 @@
 package com.example.antidoping.epoxy
 
+import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.lifecycle.ViewModel
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
+import com.example.antidoping.DetailseiteActivity
+import com.example.antidoping.MainActivity
 import com.example.antidoping.R
+import com.example.antidoping.SearchActivity
 import com.example.antidoping.entities.JoinMedisSubstanceData
 import kotlinx.android.synthetic.main.single_item_medicine.view.*
 
@@ -34,7 +40,14 @@ abstract class SingleItemModel (@EpoxyAttribute var item: JoinMedisSubstanceData
             holder.imageView.setImageResource(R.drawable.ic_substance)
         }
 
-        holder.titleView.text = item.getName()
+        holder.titleView.setOnClickListener({
+            val intent = Intent(holder.titleView.context, DetailseiteActivity::class.java)
+            intent.putExtra("id",item.getId())
+        })
+
+
+
+        //Hier Onclicklistener
 
     }
 
