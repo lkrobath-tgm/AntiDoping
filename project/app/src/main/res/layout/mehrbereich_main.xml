@@ -80,6 +80,7 @@
 
     <Button
         android:id="@+id/oslButton"
+        android:visibility="gone"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="409dp"
         android:layout_height="55dp"

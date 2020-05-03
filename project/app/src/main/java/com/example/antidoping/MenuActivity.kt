@@ -1,6 +1,7 @@
 package com.example.antidoping
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -19,24 +20,32 @@ class MenuActivity : AppCompatActivity() {
 
         menu.setOnClickListener{
             val intent = Intent(this@MenuActivity, MainActivity::class.java)
-             startActivity(intent)
+            startActivity(intent)
+
+
         }
 
         verbot.setOnClickListener{
-            val intent = Intent(this@MenuActivity, VerbotActivity::class.java)
-            startActivity(intent)
+            //val intent = Intent(this@MenuActivity, VerbotActivity::class.java)
+            //startActivity(intent)
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.nada.at/de/medizin/verbotsliste"))
+            startActivity(i)
         }
         osl.setOnClickListener{
             val intent = Intent(this@MenuActivity, OSLActivity::class.java)
             startActivity(intent)
         }
         benu.setOnClickListener{
-            val intent = Intent(this@MenuActivity, BenutzerActivity::class.java)
-            startActivity(intent)
+            //val intent = Intent(this@MenuActivity, BenutzerActivity::class.java)
+            //startActivity(intent)
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.nada.at/de/medizin/medikamentenabfrage/benutzerhinweise"))
+            startActivity(i)
         }
         imp.setOnClickListener{
-            val intent = Intent(this@MenuActivity, ImpressumActivity::class.java)
-            startActivity(intent)
+            //val intent = Intent(this@MenuActivity, ImpressumActivity::class.java)
+            //startActivity(intent)
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.nada.at/de/impressum"))
+            startActivity(i)
         }
 
 
