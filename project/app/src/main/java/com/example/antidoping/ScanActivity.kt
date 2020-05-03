@@ -32,13 +32,32 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         // Do something with the result here
         // Log.v("tag", rawResult.getText()); // Prints scan results
         // Log.v("tag", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
-        Log.ERROR;
-        Log.v("tag", rawResult.getBarcodeFormat().toString());
+        Log.ERROR
+        Log.v("tag", rawResult.barcodeFormat.toString())
 
 
         /*val tvresult:TextView = findViewById(R.id.tvresult);
         tvresult.setText(rawResult.text)*/
         val i = Intent(this@ScanActivity, MainActivity::class.java)
+
+
+        // logik
+        var ziffern = rawResult.text
+        val liste = ziffern.toCharArray();
+
+        var neu = ""
+        neu += liste[9]
+        neu += liste[10]
+        neu += liste[11]
+        neu += liste[12]
+        neu += liste[13]
+        // Neu ist der beschnittene Code
+
+
+
+
+
+
         i.putExtra("qrcode",rawResult.text)
         startActivity(i)
         //Falsche Aktivität!!!
