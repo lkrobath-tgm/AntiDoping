@@ -2,18 +2,15 @@ package com.example.antidoping
 
 import android.content.Intent
 import android.graphics.Color
-import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.antidoping.entities.JoinMedisSubstanceData
 import com.huma.room_for_asset.RoomAsset
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import org.w3c.dom.Text
 
 class DetailseiteActivity : AppCompatActivity(){
     private lateinit var database: AppDatabase
@@ -44,8 +41,8 @@ class DetailseiteActivity : AppCompatActivity(){
         val anwendungsgebiete:TextView = findViewById(R.id.textView7)
         val wirksamkeit:TextView = findViewById(R.id.textView9)
         val nebenwirkungen:TextView = findViewById(R.id.textView11)
-        val inCompText:TextView = findViewById(R.id.textView4)
-        val outCompText:TextView = findViewById(R.id.textView5)
+        val inCompText:TextView = findViewById(R.id.inCompText)
+        val outCompText:TextView = findViewById(R.id.outCompText)
 
             val id:Int? = bundle?.getInt("id")
             val stringId:String = id.toString()
@@ -81,6 +78,16 @@ class DetailseiteActivity : AppCompatActivity(){
                         2 -> outCompText.setTextColor(Color.RED)
                     }
 
+                }, { exception ->
+                    Log.e("Exception", "$exception")
+                })
+
+                profileDAO.getSubstancesById(stringId)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ result ->
+                        item = result
+                        name.text = item.getName()+""
                 }, { exception ->
                     Log.e("Exception", "$exception")
                 })
