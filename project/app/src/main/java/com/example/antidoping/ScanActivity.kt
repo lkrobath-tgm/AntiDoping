@@ -38,30 +38,21 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
         /*val tvresult:TextView = findViewById(R.id.tvresult);
         tvresult.setText(rawResult.text)*/
-        val i = Intent(this@ScanActivity, MainActivity::class.java)
 
-
-        // logik
         var ziffern = rawResult.text
         val liste = ziffern.toCharArray();
 
-        var neu = ""
-        neu += liste[9]
-        neu += liste[10]
-        neu += liste[11]
-        neu += liste[12]
-        neu += liste[13]
+        var id = ""
+        id += liste[9]
+        id += liste[10]
+        id += liste[11]
+        id += liste[12]
+        id += liste[13]
         // Neu ist der beschnittene Code
 
-
-
-
-
-
-        i.putExtra("qrcode",rawResult.text)
-        startActivity(i)
-        //Falsche Aktivität!!!
-
+        val intent = Intent(this@ScanActivity, DetailseiteActivity::class.java)
+        intent.putExtra("id",id)
+        startActivity(intent)
         // If you would like to resume scanning, call this method below:
         //mScannerView.resumeCameraPreview(this);
     }
