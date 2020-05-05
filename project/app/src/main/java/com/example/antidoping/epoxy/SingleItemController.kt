@@ -1,9 +1,7 @@
 package com.example.antidoping.epoxy
 
 
-import com.airbnb.epoxy.AutoModel
 import com.airbnb.epoxy.EpoxyController
-import com.example.antidoping.R
 import com.example.antidoping.entities.JoinMedisSubstanceData
 
 

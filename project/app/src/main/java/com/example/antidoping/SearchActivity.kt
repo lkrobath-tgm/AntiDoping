@@ -69,14 +69,12 @@ class SearchActivity : AppCompatActivity() {
         onlySubstance.setOnClickListener {
             if(onlySubstance.isChecked){
                 isSubstance = true
-                Toast.makeText(applicationContext, "Substanz", Toast.LENGTH_SHORT).show();
             }
         }
 
         onlyMedicine.setOnClickListener {
             if(onlyMedicine.isChecked){
                 isMedicine = true
-                Toast.makeText(applicationContext, "Medizin", Toast.LENGTH_SHORT).show();
             }
         }
 
