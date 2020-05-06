@@ -107,7 +107,6 @@
         android:id="@+id/tvresult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/result_will_be_here"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
