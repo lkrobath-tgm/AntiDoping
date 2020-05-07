@@ -213,7 +213,7 @@ class SearchActivity : AppCompatActivity() {
 
     fun onItemClick(position: Int) {
         itemsList = controller.getListMedis()
-        val intent = Intent(this, DetailActivity::class.java)
+        val intent = Intent(this, DetailseiteActivity::class.java)
         intent.putExtra("selected_note", "test")
         startActivity(intent)
     }
