@@ -3,6 +3,7 @@ package com.example.antidoping
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
@@ -38,30 +39,24 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
         /*val tvresult:TextView = findViewById(R.id.tvresult);
         tvresult.setText(rawResult.text)*/
-        val i = Intent(this@ScanActivity, MainActivity::class.java)
 
-
-        // logik
         var ziffern = rawResult.text
         val liste = ziffern.toCharArray();
 
-        var neu = ""
-        neu += liste[9]
-        neu += liste[10]
-        neu += liste[11]
-        neu += liste[12]
-        neu += liste[13]
+        var pzn = ""
+
+        pzn += liste[10]
+        pzn += liste[11]
+        pzn += liste[12]
+        pzn += liste[13]
+        pzn += liste[14]
+        pzn += liste[15]
         // Neu ist der beschnittene Code
 
-
-
-
-
-
-        i.putExtra("qrcode",rawResult.text)
-        startActivity(i)
-        //Falsche Aktivität!!!
-
+        val intent = Intent(this@ScanActivity, DetailseiteActivity::class.java)
+        intent.putExtra("PZN",pzn)
+        intent.putExtra("typ","barcode")
+        startActivity(intent)
         // If you would like to resume scanning, call this method below:
         //mScannerView.resumeCameraPreview(this);
     }

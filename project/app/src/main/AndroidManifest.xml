@@ -27,7 +27,7 @@
         <activity android:name=".ImpressumActivity"></activity>
         <activity android:name=".BenutzerActivity"></activity>
         <activity android:name=".OSLActivity"></activity>
-
+        <activity android:name=".DetailseiteActivity"></activity>
 </application>
 
 </manifest>

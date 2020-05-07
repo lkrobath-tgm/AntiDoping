@@ -42,10 +42,34 @@ class JoinMedisSubstanceData {
     }
 
     fun getId():Int?{
-        if(getType().equals("Medi")){
-            return medis?.Uid
-        }else{
+        if(medis?.Uid == null){
             return substance?.Uid
+        }else{
+            return medis?.Uid
+        }
+    }
+
+    fun getAG():String?{
+        if(this.getType().equals("Medi")){
+            return medis?.AG
+        }else{
+            return ""
+        }
+    }
+
+    fun getEW():String?{
+        if(this.getType().equals("Medi")){
+            return medis?.EW
+        }else{
+            return ""
+        }
+    }
+
+    fun getNW():String?{
+        if(this.getType().equals("Medi")){
+            return medis?.NW
+        }else{
+            return ""
         }
     }
 

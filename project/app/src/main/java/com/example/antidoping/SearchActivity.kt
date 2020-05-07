@@ -1,31 +1,20 @@
 package com.example.antidoping
 
-import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.content.DialogInterface
-import android.content.Intent
-import android.graphics.Paint
-import android.util.Log
-import android.view.KeyEvent
-import com.huma.room_for_asset.RoomAsset
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import java.util.*
-import android.view.KeyEvent.KEYCODE_ENTER
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antidoping.entities.JoinMedisSubstanceData
 import com.example.antidoping.epoxy.SingleItemController
-import org.w3c.dom.Text
-import android.widget.AdapterView.OnItemClickListener
-
-
+import com.huma.room_for_asset.RoomAsset
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 
 class SearchActivity : AppCompatActivity() {
@@ -49,6 +38,19 @@ class SearchActivity : AppCompatActivity() {
 
 
 
+        val back:ImageView = findViewById(R.id.imageView20)
+        back.setOnClickListener{
+            val intent = Intent(this@SearchActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        var menu: ImageView = findViewById(R.id.imageView2);
+
+        menu.setOnClickListener{
+            val intent = Intent(this@SearchActivity, MenuActivity::class.java)
+            startActivity(intent)
+        }
+
 
         database = RoomAsset.databaseBuilder(
             this,
@@ -69,14 +71,12 @@ class SearchActivity : AppCompatActivity() {
         onlySubstance.setOnClickListener {
             if(onlySubstance.isChecked){
                 isSubstance = true
-                Toast.makeText(applicationContext, "Substanz", Toast.LENGTH_SHORT).show();
             }
         }
 
         onlyMedicine.setOnClickListener {
             if(onlyMedicine.isChecked){
                 isMedicine = true
-                Toast.makeText(applicationContext, "Medizin", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -229,7 +229,7 @@ class SearchActivity : AppCompatActivity() {
         //This statement builds model and add it to the recycler view
         controller.requestModelBuild()
     }
-    fun getContext(): Context{
-        return this.getContext()
+    fun startIntent(intent:Intent){
+        startActivity(intent)
     }
 }

@@ -1,28 +1,21 @@
 package com.example.antidoping.epoxy
 
-import android.content.Context
 import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.annotation.DrawableRes
-import androidx.lifecycle.ViewModel
 import com.airbnb.epoxy.EpoxyAttribute
-import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.example.antidoping.DetailseiteActivity
-import com.example.antidoping.MainActivity
 import com.example.antidoping.R
-import com.example.antidoping.SearchActivity
 import com.example.antidoping.entities.JoinMedisSubstanceData
-import kotlinx.android.synthetic.main.single_item_medicine.view.*
 
 @EpoxyModelClass(layout = R.layout.singlemedicine_layout)
 abstract class SingleItemModel (@EpoxyAttribute var item: JoinMedisSubstanceData) : EpoxyModelWithHolder<SingleItemModel.ListHolder>(){
 
     override fun bind(holder: ListHolder) {
+        holder.titleView.text = item.getName()
         holder.typeView.text = item.getType()
         if(holder.typeView.text.equals("Medi")){
             holder.imageView.setImageResource(R.drawable.ic_medicine)
@@ -40,15 +33,12 @@ abstract class SingleItemModel (@EpoxyAttribute var item: JoinMedisSubstanceData
             holder.imageView.setImageResource(R.drawable.ic_substance)
         }
 
-        holder.titleView.setOnClickListener({
+        holder.titleView.setOnClickListener {
             val intent = Intent(holder.titleView.context, DetailseiteActivity::class.java)
             intent.putExtra("id",item.getId())
-        })
-
-
-
-        //Hier Onclicklistener
-
+            intent.putExtra("typ","suche")
+            holder.titleView.context.startActivity(intent)
+        }
     }
 
     inner class ListHolder : KotlinHolder(), View.OnClickListener{
