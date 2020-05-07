@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.antidoping.entities.JoinMedisSubstanceData
 import com.huma.room_for_asset.RoomAsset
@@ -15,6 +16,7 @@ import io.reactivex.schedulers.Schedulers
 class DetailseiteActivity : AppCompatActivity(){
     private lateinit var database: AppDatabase
     private lateinit var item: JoinMedisSubstanceData
+    private var mediUid:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,52 +46,79 @@ class DetailseiteActivity : AppCompatActivity(){
         val inCompText:TextView = findViewById(R.id.inCompText)
         val outCompText:TextView = findViewById(R.id.outCompText)
 
-            val id:Int? = bundle?.getInt("id")
-            val stringId:String = id.toString()
-            profileDAO.getMedisById(stringId)
+
+
+        val id:Int? = bundle?.getInt("id")
+        val typ:String? = bundle?.getString("typ")
+
+        //Uid ist in der DB immer ein String
+        var stringId:String = id.toString()
+
+        if(typ.equals("barcode")){
+            var pzn:String? = bundle?.getString("PZN")
+            var stringpzn:String = pzn.toString()
+
+
+            profileDAO.getMedisUidInPackungen(stringpzn)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ result ->
+                    Toast.makeText(applicationContext, result.pzn, Toast.LENGTH_SHORT).show()
+                    mediUid = result.pzn
+
+                }, { exception ->
+                    Log.e("Exception", "$exception")
+                })
+            //Uid in der DB immer String
+            stringId = stringpzn
+
+        }
+
+        profileDAO.getMedisById(stringId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ result ->
+                item = result
+                name.text = item.getName()+""
+                nebenwirkungen.text = item.getNW()
+                anwendungsgebiete.text = item.getAG()
+                wirksamkeit.text = item.getEW()
+                when(item.getInComp()){
+                    0 -> inComp.setImageResource(R.drawable.ic_in_comp_allowed)
+                    0 -> inCompText.text = "erlaubt"
+                    0 -> inCompText.setTextColor(Color.GREEN)
+                    1 -> inComp.setImageResource(R.drawable.ic_in_comp_restricted)
+                    1 -> inCompText.text = "beschränkt"
+                    1 -> inCompText.setTextColor(Color.YELLOW)
+                    2 -> inComp.setImageResource(R.drawable.ic_in_comp_forbidden)
+                    2 -> inCompText.text = "verboten"
+                    2 -> inCompText.setTextColor(Color.RED)
+                }
+                when(item.getOutComp()){
+                    0 -> outComp.setImageResource(R.drawable.ic_in_comp_allowed)
+                    0 -> outCompText.text = "erlaubt"
+                    0 -> outCompText.setTextColor(Color.GREEN)
+                    1 -> outComp.setImageResource(R.drawable.ic_in_comp_restricted)
+                    1 -> outCompText.text = "beschränkt"
+                    1 -> outCompText.setTextColor(Color.YELLOW)
+                    2 -> outComp.setImageResource(R.drawable.ic_in_comp_forbidden)
+                    2 -> outCompText.text = "verboten"
+                    2 -> outCompText.setTextColor(Color.RED)
+                }
+
+            }, { exception ->
+                Log.e("Exception", "$exception")
+            })
+
+            profileDAO.getSubstancesById(stringId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->
                     item = result
                     name.text = item.getName()+""
-                    nebenwirkungen.text = item.getNW()
-                    anwendungsgebiete.text = item.getAG()
-                    wirksamkeit.text = item.getEW()
-                    when(item.getInComp()){
-                        0 -> inComp.setImageResource(R.drawable.ic_in_comp_allowed)
-                        0 -> inCompText.text = "erlaubt"
-                        0 -> inCompText.setTextColor(Color.GREEN)
-                        1 -> inComp.setImageResource(R.drawable.ic_in_comp_restricted)
-                        1 -> inCompText.text = "beschränkt"
-                        1 -> inCompText.setTextColor(Color.YELLOW)
-                        2 -> inComp.setImageResource(R.drawable.ic_in_comp_forbidden)
-                        2 -> inCompText.text = "verboten"
-                        2 -> inCompText.setTextColor(Color.RED)
-                    }
-                    when(item.getOutComp()){
-                        0 -> outComp.setImageResource(R.drawable.ic_in_comp_allowed)
-                        0 -> outCompText.text = "erlaubt"
-                        0 -> outCompText.setTextColor(Color.GREEN)
-                        1 -> outComp.setImageResource(R.drawable.ic_in_comp_restricted)
-                        1 -> outCompText.text = "beschränkt"
-                        1 -> outCompText.setTextColor(Color.YELLOW)
-                        2 -> outComp.setImageResource(R.drawable.ic_in_comp_forbidden)
-                        2 -> outCompText.text = "verboten"
-                        2 -> outCompText.setTextColor(Color.RED)
-                    }
+            }, { exception ->
+                Log.e("Exception", "$exception")
+            })
 
-                }, { exception ->
-                    Log.e("Exception", "$exception")
-                })
-
-                profileDAO.getSubstancesById(stringId)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ result ->
-                        item = result
-                        name.text = item.getName()+""
-                }, { exception ->
-                    Log.e("Exception", "$exception")
-                })
     }
 }

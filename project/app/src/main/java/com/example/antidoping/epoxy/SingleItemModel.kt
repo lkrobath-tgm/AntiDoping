@@ -36,6 +36,7 @@ abstract class SingleItemModel (@EpoxyAttribute var item: JoinMedisSubstanceData
         holder.titleView.setOnClickListener {
             val intent = Intent(holder.titleView.context, DetailseiteActivity::class.java)
             intent.putExtra("id",item.getId())
+            intent.putExtra("typ","suche")
             holder.titleView.context.startActivity(intent)
         }
     }

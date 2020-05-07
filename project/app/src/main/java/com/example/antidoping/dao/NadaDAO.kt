@@ -3,6 +3,7 @@ package com.example.antidoping.dao
 import androidx.room.Dao
 import androidx.room.Query
 import com.example.antidoping.entities.JoinMedisSubstanceData
+import com.example.antidoping.entities.Packungen
 import com.example.antidoping.entities.Takings
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -47,4 +48,9 @@ interface NadaDAO {
 
     @Query("SELECT * FROM Substances WHERE Substances.Uid == :id")
     fun getSubstancesById(id:String):Observable<JoinMedisSubstanceData>
+
+    @Query("SELECT * FROM Packungen WHERE PZN = :pzn")
+    fun getMedisUidInPackungen(pzn:String):Observable<Packungen>
+
+
 }
