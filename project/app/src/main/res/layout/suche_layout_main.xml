@@ -75,24 +75,11 @@
         app:layout_constraintStart_toEndOf="@+id/medicine"
         app:layout_constraintTop_toTopOf="@+id/medicine" />
 
-    <Button
-        android:id="@+id/MedScanButton"
-        android:layout_width="375dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/round_corner_button_dblue"
-        android:text="@string/MedScanText"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="355dp"
-        android:layout_height="406dp"
+        android:layout_width="351dp"
+        android:layout_height="489dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
