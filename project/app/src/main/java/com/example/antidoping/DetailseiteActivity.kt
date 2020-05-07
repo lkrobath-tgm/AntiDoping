@@ -38,13 +38,13 @@ class DetailseiteActivity : AppCompatActivity(){
         val bundle:Bundle? = intent.extras
 
         val name:TextView = findViewById(R.id.textView)
-        val inComp:ImageView = findViewById(R.id.imageView)
-        val outComp:ImageView = findViewById(R.id.imageView4)
+        val inComp:ImageView = findViewById(R.id.imageView4)
+        val outComp:ImageView = findViewById(R.id.imageView)
         val anwendungsgebiete:TextView = findViewById(R.id.textView7)
         val wirksamkeit:TextView = findViewById(R.id.textView9)
         val nebenwirkungen:TextView = findViewById(R.id.textView11)
-        val inCompText:TextView = findViewById(R.id.inCompText)
-        val outCompText:TextView = findViewById(R.id.outCompText)
+        val inCompText:TextView = findViewById(R.id.textView4)
+        val outCompText:TextView = findViewById(R.id.textView5)
 
 
 
@@ -84,26 +84,39 @@ class DetailseiteActivity : AppCompatActivity(){
                 anwendungsgebiete.text = item.getAG()
                 wirksamkeit.text = item.getEW()
                 when(item.getInComp()){
-                    0 -> inComp.setImageResource(R.drawable.ic_in_comp_allowed)
-                    0 -> inCompText.text = "erlaubt"
-                    0 -> inCompText.setTextColor(Color.GREEN)
-                    1 -> inComp.setImageResource(R.drawable.ic_in_comp_restricted)
-                    1 -> inCompText.text = "beschränkt"
-                    1 -> inCompText.setTextColor(Color.YELLOW)
-                    2 -> inComp.setImageResource(R.drawable.ic_in_comp_forbidden)
-                    2 -> inCompText.text = "verboten"
-                    2 -> inCompText.setTextColor(Color.RED)
+                    0 -> {
+                        inComp.setImageResource(R.drawable.ic_in_comp_allowed)
+                        inCompText.text = "erlaubt"
+                        inCompText.setTextColor(Color.parseColor("#4CAF50"))
+                    }
+                    1 -> {
+                        inComp.setImageResource(R.drawable.ic_in_comp_restricted)
+                        inCompText.text = "beschränkt"
+                        inCompText.setTextColor(Color.YELLOW)
+                    }
+
+                    2 -> {
+                        inComp.setImageResource(R.drawable.ic_in_comp_forbidden)
+                        inCompText.text = "verboten"
+                        inCompText.setTextColor(Color.parseColor("#FF0000"))
+                    }
                 }
                 when(item.getOutComp()){
-                    0 -> outComp.setImageResource(R.drawable.ic_in_comp_allowed)
-                    0 -> outCompText.text = "erlaubt"
-                    0 -> outCompText.setTextColor(Color.GREEN)
-                    1 -> outComp.setImageResource(R.drawable.ic_in_comp_restricted)
-                    1 -> outCompText.text = "beschränkt"
-                    1 -> outCompText.setTextColor(Color.YELLOW)
-                    2 -> outComp.setImageResource(R.drawable.ic_in_comp_forbidden)
-                    2 -> outCompText.text = "verboten"
-                    2 -> outCompText.setTextColor(Color.RED)
+                    0 -> {
+                        outComp.setImageResource(R.drawable.ic_in_comp_allowed)
+                        outCompText.text = "erlaubt"
+                        outCompText.setTextColor(Color.parseColor("#4CAF50"))
+                    }
+                    1 -> {
+                        outComp.setImageResource(R.drawable.ic_in_comp_restricted)
+                        outCompText.text = "beschränkt"
+                        outCompText.setTextColor(Color.YELLOW)
+                    }
+                    2 -> {
+                        outComp.setImageResource(R.drawable.ic_in_comp_forbidden)
+                        outCompText.text = "verboten"
+                        outCompText.setTextColor(Color.parseColor("#FF0000"))
+                    }
                 }
 
             }, { exception ->
