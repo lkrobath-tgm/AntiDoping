@@ -210,14 +210,6 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
-
-    fun onItemClick(position: Int) {
-        itemsList = controller.getListMedis()
-        val intent = Intent(this, DetailseiteActivity::class.java)
-        intent.putExtra("selected_note", "test")
-        startActivity(intent)
-    }
-
     private fun initRecycler(){
         val linearLayoutManager = LinearLayoutManager(this)
         recyclerView.apply {
@@ -229,7 +221,5 @@ class SearchActivity : AppCompatActivity() {
         //This statement builds model and add it to the recycler view
         controller.requestModelBuild()
     }
-    fun startIntent(intent:Intent){
-        startActivity(intent)
-    }
+
 }

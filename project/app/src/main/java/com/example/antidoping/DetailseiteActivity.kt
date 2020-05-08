@@ -51,30 +51,29 @@ class DetailseiteActivity : AppCompatActivity(){
         val id:Int? = bundle?.getInt("id")
         val typ:String? = bundle?.getString("typ")
 
-        //Uid ist in der DB immer ein String
-        var stringId:String = id.toString()
+        var notNullableInt:Int = 0
+        if (id != null) {
+            notNullableInt = id
+        }
 
         if(typ.equals("barcode")){
             var pzn:String? = bundle?.getString("PZN")
             var stringpzn:String = pzn.toString()
-
-
+            
             profileDAO.getMedisUidInPackungen(stringpzn)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->
-                    Toast.makeText(applicationContext, result.pzn, Toast.LENGTH_SHORT).show()
-                    mediUid = result.pzn
-
+                    Toast.makeText(applicationContext, ""+result.medicineId, Toast.LENGTH_SHORT).show()
+                    mediUid = result.medicineId
+                    notNullableInt = mediUid
                 }, { exception ->
                     Log.e("Exception", "$exception")
                 })
-            //Uid in der DB immer String
-            stringId = stringpzn
-
+            notNullableInt = mediUid
         }
 
-        profileDAO.getMedisById(stringId)
+        profileDAO.getMedisByUid(notNullableInt)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ result ->
@@ -123,7 +122,7 @@ class DetailseiteActivity : AppCompatActivity(){
                 Log.e("Exception", "$exception")
             })
 
-            profileDAO.getSubstancesById(stringId)
+            profileDAO.getSubstancesByUid(notNullableInt)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->

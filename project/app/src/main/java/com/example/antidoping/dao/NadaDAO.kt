@@ -49,8 +49,14 @@ interface NadaDAO {
     @Query("SELECT * FROM Substances WHERE Substances.Uid == :id")
     fun getSubstancesById(id:String):Observable<JoinMedisSubstanceData>
 
+    @Query("SELECT * FROM Substances WHERE Substances.Uid == :id")
+    fun getSubstancesByUid(id:Int):Observable<JoinMedisSubstanceData>
+
     @Query("SELECT * FROM Packungen WHERE PZN = :pzn")
     fun getMedisUidInPackungen(pzn:String):Observable<Packungen>
+
+    @Query("SELECT * FROM Medis WHERE Medis.Uid = :id")
+    fun getMedisByUid(id:Int):Observable<JoinMedisSubstanceData>
 
 
 }
