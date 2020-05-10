@@ -37,4 +37,5 @@
 <string name="besides">Ausserhalb</string>
 <string name="drug_name">Medikamentenname</string>
 <string name="legal">erlaubt</string>
+    <string name="versionNumber">v0.1</string>
 </resources>
