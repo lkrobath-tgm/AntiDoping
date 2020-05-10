@@ -7,20 +7,6 @@
     tools:context=".MainActivity"
     android:background="#FFFFFF">
 
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="410dp"
-        android:layout_height="55dp"
-        android:background="#52BD7E"
-        android:dropDownSelector="@drawable/ic_chevron_down"
-        android:textAlignment="viewStart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="0.567" />
-
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
@@ -251,22 +237,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view"
         app:layout_constraintVertical_bias="0.667" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="410dp"
-        android:layout_height="55dp"
-        android:background="#EE8383"
-        android:dropDownSelector="@drawable/ic_chevron_down"
-        android:text="@string/forbidden_ingredient"
-        android:textAlignment="viewStart"
-        android:textColor="#11284c"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view"
-        app:layout_constraintVertical_bias="0.883" />
 
     <TextView
         android:id="@+id/textView4"
