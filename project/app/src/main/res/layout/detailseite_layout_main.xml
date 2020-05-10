@@ -73,8 +73,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="227dp"
-        android:layout_height="72dp"
+        android:layout_width="238dp"
+        android:layout_height="93dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/drug_name"
         android:textColor="#FFFFFF"
@@ -196,19 +196,6 @@
         app:layout_constraintVertical_bias="0.03" />
 
     <TextView
-        android:id="@+id/textView11"
-        android:layout_width="296dp"
-        android:layout_height="wrap_content"
-        android:text="@string/side_effects_details"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.215"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
-        app:layout_constraintVertical_bias="0.052" />
-
-    <TextView
         android:id="@+id/textView8"
         android:layout_width="171dp"
         android:layout_height="22dp"
@@ -235,8 +222,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view"
-        app:layout_constraintVertical_bias="0.667" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.104" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="296dp"
+        android:layout_height="wrap_content"
+        android:text="@string/side_effects_details"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.217"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.027" />
 
     <TextView
         android:id="@+id/textView4"
