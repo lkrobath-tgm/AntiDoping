@@ -102,17 +102,17 @@ class DetailseiteActivity : AppCompatActivity(){
                             }
                             when(item.getOutComp()){
                                 0 -> {
-                                    outComp.setImageResource(R.drawable.ic_in_comp_allowed)
+                                    outComp.setImageResource(R.drawable.ic_out_comp_allowed)
                                     outCompText.text = "erlaubt"
                                     outCompText.setTextColor(Color.parseColor("#4CAF50"))
                                 }
                                 1 -> {
-                                    outComp.setImageResource(R.drawable.ic_in_comp_restricted)
+                                    outComp.setImageResource(R.drawable.ic_out_comp_restricted)
                                     outCompText.text = "beschränkt"
                                     outCompText.setTextColor(Color.YELLOW)
                                 }
                                 2 -> {
-                                    outComp.setImageResource(R.drawable.ic_in_comp_forbidden)
+                                    outComp.setImageResource(R.drawable.ic_out_comp_forbidden)
                                     outCompText.text = "verboten"
                                     outCompText.setTextColor(Color.parseColor("#FF0000"))
                                 }
@@ -171,17 +171,17 @@ class DetailseiteActivity : AppCompatActivity(){
                     }
                     when(item.getOutComp()){
                         0 -> {
-                            outComp.setImageResource(R.drawable.ic_in_comp_allowed)
+                            outComp.setImageResource(R.drawable.ic_out_comp_allowed)
                             outCompText.text = "erlaubt"
                             outCompText.setTextColor(Color.parseColor("#4CAF50"))
                         }
                         1 -> {
-                            outComp.setImageResource(R.drawable.ic_in_comp_restricted)
+                            outComp.setImageResource(R.drawable.ic_out_comp_restricted)
                             outCompText.text = "beschränkt"
                             outCompText.setTextColor(Color.YELLOW)
                         }
                         2 -> {
-                            outComp.setImageResource(R.drawable.ic_in_comp_forbidden)
+                            outComp.setImageResource(R.drawable.ic_out_comp_forbidden)
                             outCompText.text = "verboten"
                             outCompText.setTextColor(Color.parseColor("#FF0000"))
                         }
